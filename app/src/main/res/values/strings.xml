@@ -1,3 +1,307 @@
 <resources>
     <string name="app_name">WiscPets</string>
+    <string name="title_activity_main">main</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">WiscPets</string>
+    <string name="nav_header_subtitle">hotline@petscenter.wisc.edu</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="key"> ---------- ENTER YOUR GOOGLE MAPS API KEY ----------- </string>
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="contact">contact</string>
+    <string name="title_activity_map">Map</string>
+    <string name="title_activity_clndrvw">Calendar</string>
+    <string name="title_activity_editattend">Edit</string>
+    <string name="title_activity_event_main">Event Notifier</string>
+    <string name="title_activity_event_view">Event_view</string>
+    <string name="title_activity_event_edit">Edit Event</string>
+    <string name="eventnotifier">Event Notifier</string>
+    <string name="done">Done!</string>
+    <string name="edit">Edit</string>
+    <string name="update">UPDATE!</string>
+    <string name="del">Delete</string>
+    <string name="back">Back</string>
+    <string name="create">Create</string>
+    <string name="eventdescr">Event Description</string>
+    <string name="eventname">Event Notifier</string>
+    <string name="eventsum">Event Summary</string>
+    <string name="marktoday">Mark Today\'s</string>
+    <string name="save">Save</string>
+    <string name="about_title">WiscPets</string>
+    <string name="about_message">Created for WiscPets</string>
+    <string name="icon">icon</string>
+    <string name="password">password</string>
+    <string name="arrow">arrow</string>
+    <string name="text_note">Text Note</string>
+    <string name="delete">delete</string>
+    <string name="password_protection">Password Protection:</string>
+
+    <string-array name="symptom_list">
+        <item>SELECT SYMPTOM</item>
+        <item>Itchiness</item>
+        <item>Hives</item>
+        <item>Swelling</item>
+        <item>Red, inflamed skin</item>
+        <item>Diarrhea</item>
+        <item>Vomiting</item>
+        <item>Sneezing</item>
+        <item>Scratching of the ear</item>
+        <item>Brown, yellow, or bloody discharge</item>
+        <item>Odor in the ear</item>
+        <item>Redness Swelling Crusts or scabs</item>
+        <item>Hair loss around the ear</item>
+        <item>Head shaking or head tilt</item>
+        <item>Reluctance to walk</item>
+        <item>Limping</item>
+        <item>Lagging behind on walks</item>
+        <item>Pain or stiffness</item>
+        <item>Yelping when touched</item>
+        <item>Licking of affected joints</item>
+        <item>Increased thirst</item>
+        <item>Fatigue or sluggishness</item>
+        <item>Urgency to urinate</item>
+        <item>Licking at urinary opening</item>
+        <item>Whining</item>
+        <item>Loss of appetite</item>
+        <item>Fever</item>
+        <item>Blood in urine</item>
+        <item>Problems picking up food</item>
+        <item>Bleeding or red gums</item>
+        <item>Loose teeth</item>
+        <item>Bad breath</item>
+        <item>Bumps or lumps</item>
+        <item>Bloody or ropey saliva</item>
+        <item>Dehydration</item>
+        <item>Painful, distended, or hard belly</item>
+        <item>Retching, trying to vomit</item>
+        <item>Blood in vomit, urine, or feces</item>
+        <item>Lethargy"</item>
+        <item>Suspected ingestion</item>
+    </string-array>
+
+    <string-array name="symptom_list_cat">
+        <item>SELECT SYMPTOM cat</item>
+        <item>Frequent urinating</item>
+        <item>Drinking a lot of water</item>
+        <item>Bacterial infections</item>
+        <item>Weight loss</item>
+        <item>Decreased appetite</item>
+        <item>Vomiting</item>
+        <item>Bloody or cloudy urine</item>
+        <item>Decreased appetite</item>
+        <item>Excessive thirst</item>
+        <item>Increased urination</item>
+        <item>Hyperactivity</item>
+        <item>Unkempt appearance</item>
+        <item>Panting</item>
+        <item>Excessive grooming</item>
+        <item>Frequent attempts to urinate</item>
+        <item>Squatting to urinate</item>
+        <item>Urinating in unusual places</item>
+        <item>Lethargy</item>
+        <item>Drooling</item>
+        <item>Decreased appetite</item>
+        <item>Swollen and bleeding gums</item>
+        <item>Bad breath</item>
+        <item>Diarrhea</item>
+        <item>Weight loss</item>
+        <item>Loss of appetite</item>
+        <item>Chronic soft stool</item>
+        <item>Discomfort</item>
+        <item>Excessive Urination and Thirst</item>
+        <item>Increased Weight Loss</item>
+        <item>Inability to Jump and Loss of Interest</item>
+        <item>Change in Gait</item>
+        <item>Lack of Appetite</item>
+    </string-array>
+
+    <string-array name="symptom_list_covid">
+        <item>SELECT SYMPTOM COVID</item>
+        <item>Coughing</item>
+        <item>Fever</item>
+        <item>Unusual laziness or sluggish</item>
+        <item>Shortness of breath</item>
+        <item>Loss of appetite</item>
+        <item>Vomiting</item>
+        <item>Congestion or runny nose</item>
+        <item>Excessive thirst</item>
+        <item>Increased urination</item>
+        <item>Hyperactivity</item>
+        <item>Unkempt appearance</item>
+        <item>Panting</item>
+        <item>Excessive grooming</item>
+        <item>Frequent attempts to urinate</item>
+        <item>Squatting to urinate</item>
+        <item>Urinating in unusual places</item>
+        <item>Lethargy</item>
+        <item>Drooling</item>
+    </string-array>
+
+    <string name="no_patients">No current patients to display</string>
+    <string name="menu_sign_in">Sign In</string>
+    <string name="menu_sign_out">Sign Out</string>
+    <string name="menu_search_patient">Search Patient</string>
+    <string name="search_hint">Health insurance number</string>
+    <string name="patient_search_dialog">Search an archived patient</string>
+    <string name="medical_record_search_dialog">Look up patient\'s medical record</string>
+    <string name="menu_ok">OK</string>
+    <string name="menu_cancel">Cancel</string>
+    <string name="patient_activity_name">Patient</string>
+    <string name="menu_get_medical_record">View Medical Record</string>
+    <string name="listview_no_vitals">No current vital signs to display</string>
+    <string name="menu_add_vitals">Add Vitals</string>
+    <string name="title_add_vitals">Enter vital sign information</string>
+    <string name="blood_pressure">Blood Pressure</string>
+    <string name="diastolic">Diastolic</string>
+    <string name="systolic">Systolic</string>
+    <string name="temperature">Temperature</string>
+    <string name="heart_rate">Heart Rate</string>
+    <string name="add_patient_vitals">Add Patients Vital Signs</string>
+    <string name="title_of_activity_main">DoctorNurse</string>
+    <string name="title_of_activity_add_vitals">Vital Signs Record</string>
+    <string name="title_of_activity_add_prescription">Prescription Record</string>
+    <string name="title_activity_medical_record">Medical Record</string>
+    <string name="title_patient_activity">Patient</string>
+    <string name="title_of_activity_add_patient">New Patient</string>
+    <string name="title_of_activity_about">Help and Support</string>
+    <string name="username">Username</string>
+    <string name="usernameHint"> Enter your username</string>
+    <string name="passwordHint"> Enter your password</string>
+    <string name="login"> Login</string>
+    <string name="incorrect_login">Please enter a correct username and password.</string>
+    <string name="menu_send_to_doctor">Send to Veterinarian</string>
+    <string name="menu_add_prescription">Add Prescription</string>
+    <string name="listview_no_prescriptions">No current prescriptions to display</string>
+    <string name="menu_add_patient">Add Patient</string>
+    <string name="name">Name</string>
+    <string name="date_of_birth">Date of Birth</string>
+    <string name="health_card_number">Health insurance card number (6 digits)</string>
+    <string name="sign_in">Sign in Patient</string>
+    <string name="invalid_input">Invalid inputs entered. Please review.</string>
+    <string name="prescription">Prescription</string>
+    <string name="prescription_name">Prescription Name</string>
+    <string name="prescription_instructions">Prescription instructions</string>
+    <string name="add_new_prescription">Add New Prescription</string>
+    <string name="nurse">Nurse</string>
+    <string name="doctor">Veterinarian</string>
+    <string name="icon_info">About</string>
+    <string name="about">
+
+<![CDATA[
+<h1>Login Screen</h1>
+Input a username and password. You will enter the <i>Nurse Screen</i> or  the <i>Veterinarian Screen</i> based on the user role.
+
+<h1>Nurse Screen</h1>
+<b>Urgency Tab</b>: lists patient according to urgency level in descending order.<br/>
+<b>Sent to Doctor Tab</b>: lists patient that has been sent to the doctor.<br/>
+Click on a patient in the list to enter the <i>Patient Screen</i>.<br/>
+Click <img src ="ic_action_content_add_light.png"> to add and sign in a new patient to Emergency Room.<br/>
+Click <img src ="ic_action_search_light.png"> to view existing patients using health insurance number.<br/>
+Click <img src ="ic_action_file_folder_shared_light.png"> to view a patient\'s medical record by health insurance number.<br/>
+
+<h1>Patient Screen</h1>
+<b>Info Tab</b>: Presents patient data including ERVisit details for signed in patient.<br/>
+<b>Vitals Tab</b>: Visible after the patient is signed in. Displays a list of vitals taken.<br/>
+Click <img src ="ic_action_content_discard_light.png"> to sign out the patient of Emergency Room. (Visible only for patients signed in the ER).<br/>
+Click <img src ="ic_action_send_to_doctor_light.png"> to send to the patient to the Veterinarian.<br/>
+Click <img src ="ic_action_file_folder_shared_light.png"> to view a patient\'s medical record by health insurance number.<br/>
+Click <img src ="ic_action_content_new_light.png"> to enter a patient\'s vital sign data.<br/>
+
+<h1>Veterinarian Screen </h1>
+<b>Sent to Doctor Tab</b>: lists patient that has been sent to the veterinarian.<br/>
+Click on a patient in the list to review the <i>Patient Screen</i>.<br/>
+Click <img src ="ic_action_file_folder_shared_light.png"> to view a patient\'s medical record by health insurance number.<br/>
+Click <img src ="ic_action_search_light.png"> to view existing patients using health insurance number.<br/>
+Click <img src ="ic_action_add_prescription_light.png"> to add a prescription.<br/> <br/>
+
+<h4>Features Applied to Nurse:</h4>
+Click <img src ="ic_action_social_person_add_light.png"> to sign in your pet to  Emergency Room (Visible only for patients not signed in the ER).<br/>
+Click <img src ="ic_action_send_to_doctor_light.png"> to send the patient to the doctor (Visible only for patients signed in the ER).<br/>
+Click <img src ="ic_action_content_discard_light.png"> to sign out the patient of Emergency Room. (Visible only for patients signed in the ER).<br/>
+Click <img src ="ic_action_content_new_light.png"> to add patient vitals.
+
+<h4>Features Applied to Doctor:</h4>
+<b>Prescriptions Tab</b>: Visible when the patient is signed in. Shows a list of prescriptions.<br/>
+Click <img src ="ic_action_add_prescription_light.png"> to add a prescription.<br/> <br/>
+<i>Note</i>: Use the back button to return to the <i>Nurse/Doctor Screen</i>.
+]]>
+    </string>
+    <!-- Strings related to Settings -->
+    <!-- Example General settings -->
+    <string name="pref_header_general">General</string>
+    <string name="pref_title_social_recommendations">Enable social recommendations</string>
+    <string name="pref_description_social_recommendations">Recommendations for people to contact
+        based on your order history
+    </string>
+    <string name="pref_title_display_name">Display name</string>
+    <string name="pref_default_display_name">WiscPets</string>
+    <string name="pref_title_add_friends_to_messages">WiscPets App for pets total care</string>
+    <string-array name="pref_example_list_titles">
+        <item>Always</item>
+        <item>When possible</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_example_list_values">
+        <item>1</item>
+        <item>0</item>
+        <item>-1</item>
+    </string-array>
+    <!-- Example settings for Data & Sync -->
+    <string name="pref_header_account">Account</string>
+    <string name="pref_title_account">Market</string>
+    <string-array name="pref_market_titles">
+        <item>United States</item>
+        <item>Canada</item>
+        <item>United Kingdom</item>
+        <item>India</item>
+        <item>Japan</item>
+        <item>Other</item>
+    </string-array>
+    <string-array name="pref_market_values">
+        <item>US</item>
+        <item>CA</item>
+        <item>UK</item>
+        <item>IN</item>
+        <item>JA</item>
+        <item>-1</item>
+    </string-array>
+    <string-array name="list_preference_entries">
+        <item>Entry 1</item>
+        <item>Entry 2</item>
+        <item>Entry 3</item>
+    </string-array>
+    <string-array name="list_preference_entry_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+    <string-array name="multi_select_list_preference_default_value" />
+    <string name="pref_title_account_settings">Account settings</string>
+    <!-- Example settings for Notifications -->
+    <string name="pref_header_notifications">Notifications</string>
+    <string name="pref_title_new_message_notifications">New message notifications</string>
+    <string name="pref_title_ringtone">Ringtone</string>
+    <string name="pref_ringtone_silent">Silent</string>
+    <string name="pref_title_vibrate">Vibrate</string>
+    <string name="settings">Settings</string>
+    <string name="market_message">"Market: "</string>
+    <string name="recommend_message">"\nRecommendations: "</string>
 </resources>

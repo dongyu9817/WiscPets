@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+    <style name="contact_us_theme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:statusBarColor">@color/basic</item>
+    </style>
+
+    <style name="home_theme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:statusBarColor">@color/basic</item>
+    </style>
+
+    <style name="disease_theme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:statusBarColor">@color/black</item>
+    </style>
+
+</resources>

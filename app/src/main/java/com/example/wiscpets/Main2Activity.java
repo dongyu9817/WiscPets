@@ -21,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
+//This is the notebook landing page
 public class Main2Activity extends AppCompatActivity {
     public static ArrayList<Note> notes = new ArrayList<>();
     TextView textView2;
@@ -79,7 +80,7 @@ public class Main2Activity extends AppCompatActivity {
                 return true;
             case R.id.item2:
                 Toast.makeText(this, "logout selected", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, MainActivity.class);
+                Intent intent = new Intent(this, WiscPetLoginActivity.class);
                 SharedPreferences sharedPreferences = getSharedPreferences("c.sakshi.lab5", Context.MODE_PRIVATE);
                 sharedPreferences.edit().remove("username").apply();
                 startActivity(intent);
@@ -90,7 +91,7 @@ public class Main2Activity extends AppCompatActivity {
         }
     }
     public void gotoActivity1 (){
-        Intent intent = new Intent(Main2Activity.this,MainActivity.class);
+        Intent intent = new Intent(Main2Activity.this,WiscPetLoginActivity.class);
          startActivity(intent);
 
     }

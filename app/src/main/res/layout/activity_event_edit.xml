@@ -1,0 +1,70 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:dividerPadding="20dp"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="4dp"
+    tools:context=".app.app_event_add_to_calendar"
+     >
+   
+    <TextView 
+        android:id="@+id/event_edit_helper1"
+        android:text="Enter Name of the Event"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        />
+
+    <EditText
+        android:id="@+id/event_edit_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+
+        android:inputType="text" />
+	<ScrollView
+		android:layout_width="386dp"
+		android:layout_height="551dp"
+		android:layoutDirection="inherit">
+    <LinearLayout 
+    android:id="@+id/LinearLayout2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:dividerPadding="0dp"
+    android:orientation="vertical"
+    android:paddingBottom="0dp"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="0dp"
+    tools:context=".app.app_event_add_to_calendar"
+		android:background="#D9DDF8"    >
+		<TimePicker
+			android:id="@+id/event_pick_time"
+			android:layout_width="match_parent"
+			android:layout_height="362dp"
+			android:layout_marginTop="0dp"
+			android:calendarViewShown="false" />
+		<Button
+			android:id="@+id/event_edit_done"
+			android:layout_width="64dp"
+			android:layout_height="60dp"
+			android:onClick="setevent"
+			android:background="#00BCD4"
+			android:layout_marginLeft="139dp"
+			android:text="DONE" />
+		<DatePicker
+			android:id="@+id/event_pick_date"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="0dp"
+			android:calendarViewShown="false" />
+	</LinearLayout>
+	</ScrollView>
+</LinearLayout>
