@@ -69,6 +69,7 @@ public class DatabaseManager {
         return false;
     }
 
+
     public JSONObject getSicknesses(String species, String[] symptoms) {
         String requestType = "GET";
         String operation = "getSicknesses";
@@ -99,10 +100,64 @@ public class DatabaseManager {
         return null;
     }
 
-    public boolean modifyAccount(String username, String password, long phoneNumber) {
-        String requestType = "PUT";
-        String operation = "modifyAccount";
-        return false;
+
+    public boolean modifyAccount(String token, String email, String pass, String name, String phone, String address, String role) {
+        //String requestType = "PUT";
+        //String operation = "modifyAccount";
+        String operationString = "{\"operation\":\"modifyAccount\", ";
+        String tokenString = "\"token\":\"" + token + "\", ";
+        String emailString = "\"email\":\"" + email + "\", ";
+        String passString = "\"password\":\"" + pass + "\", ";
+        String roleString = "\"role\":\"" + role + "\", ";
+        String phoneString = "\"phone\":\"" + phone + "\", ";
+        //String firstAndLastString = "\"name\":\"" + firstAndLast + "\", ";
+        String addressString = "\"address\":\"" + address + "\", ";
+        String nameString = "\"name\":\"" + name + "\", ";
+
+        final boolean[] valid = {false};
+        String jsonInputString = operationString + tokenString + emailString + passString + roleString + phoneString + addressString + nameString;
+        System.out.println(jsonInputString);
+        try {
+            // CHANGE THIS LINK
+            URL url = new URL("https://wmjb9nfbxa.execute-api.us-east-2.amazonaws.com/dev/r-badgerbytes");
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            // type of request
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/json; utf-8");
+            // authorize, without this we got 403
+            connection.setRequestProperty("x-api-key", "CEimoZkwJ26pfNfvwiXBia08JGoDVrx1aOyz5HHg");
+            connection.setDoOutput(true);
+            // now grab the output stream
+            try (OutputStream os = connection.getOutputStream()) {
+                byte[] input = jsonInputString.getBytes("utf-8");
+                os.write(input, 0, input.length);
+            }
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), "utf-8"))) {
+                StringBuilder response = new StringBuilder();
+                String responseLine = null;
+                while ((responseLine = br.readLine()) != null) {
+                    response.append(responseLine.trim());
+                }
+                JSONObject result = new JSONObject(response.toString());
+                if (result.getString("status").compareTo("success") == 0) {
+                    Log.i("user", "modify user success");
+                    valid[0] = true;
+                }
+                System.out.println(response.toString());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } catch (MalformedURLException | ProtocolException e) {
+            System.out.println("URL ISSUE\n");
+            //textView2.setText( "Malformed url or protocol exception" );
+            e.printStackTrace();
+        } catch (IOException ec) {
+            //textView2.setText( "IO exception" );
+            ec.printStackTrace();
+        }
+        return valid[0];
+
+        //return false;
     }
 
     public boolean addPrescription(String medName, String dosage, String timePeriod) {
