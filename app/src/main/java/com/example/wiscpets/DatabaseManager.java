@@ -15,12 +15,60 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 
 public class DatabaseManager {
 
     public String createToken(String username, String password) {
         String toEncode = username + ":" + password;
         return Base64.encodeToString(toEncode.getBytes(), Base64.DEFAULT);
+    }
+
+    public String getUserId(String username, String password) {
+        String token = createToken(username, password);
+        String requestType = "GET";
+        String operation = "validate";
+
+        final String urlInput = "https://oc0oygi074.execute-api.us-east-2.amazonaws.com/dev/wiscpets?operation=" + operation + "&token=" + token;
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        try {
+            URL url = new URL(urlInput);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            // type of request
+            connection.setRequestMethod(requestType);
+            connection.setRequestProperty("Content-Type", "application/json; utf-8");
+            // authorize, without this we got 403
+            //connection.setRequestProperty("x-api-key", "CEimoZkwJ26pfNfvwiXBia08JGoDVrx1aOyz5HHg");
+            connection.setDoOutput(false);
+
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), "utf-8"))) {
+                StringBuilder response = new StringBuilder();
+                String responseLine = null;
+                while ((responseLine = br.readLine()) != null) {
+                    response.append(responseLine.trim());
+                }
+                System.out.println(response.toString());
+                JSONObject result = new JSONObject(response.toString());
+                if (result.getString("status").compareTo("success") == 0) {
+                    Log.i("Request Status", "Validate Success");
+                    int returnedCustomerID = Integer.parseInt(result.getString("id"));
+                    System.out.println(returnedCustomerID);
+                    return result.getString("id");
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } catch (ProtocolException e) {
+            e.printStackTrace();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        // Failure
+        return "-1";
     }
 
     public boolean validate(String token) {
@@ -51,7 +99,7 @@ public class DatabaseManager {
                 System.out.println(response.toString());
                 JSONObject result = new JSONObject(response.toString());
                 if (result.getString("status").compareTo("success") == 0) {
-                    Log.i("account", "db success ver");
+                    Log.i("Request Status", "Validate Success");
                     int returnedCustomerID = Integer.parseInt(result.getString("id"));
                     System.out.println(returnedCustomerID);
                     return true;
@@ -73,7 +121,60 @@ public class DatabaseManager {
     public JSONObject getSicknesses(String species, String[] symptoms) {
         String requestType = "GET";
         String operation = "getSicknesses";
-        return null;
+        StringBuilder jsonInputBuilder = new StringBuilder("{\"symptoms\":[");
+        // Build symptoms entry in JSON Body
+        for (int sym = 0; sym < symptoms.length; sym++) {
+            if (sym != symptoms.length - 1) {
+                jsonInputBuilder.append("\"").append(symptoms[sym]).append("\",");
+                continue;
+            }
+            jsonInputBuilder.append("\"").append(symptoms[sym]).append("\"], ");
+        }
+        jsonInputBuilder.append("\"species\":\"").append(species).append("\"}");
+        String jsonInput = jsonInputBuilder.toString();
+        Log.i("Input", jsonInput);
+
+        final String urlInput = "https://oc0oygi074.execute-api.us-east-2.amazonaws.com/dev/wiscpets?operation=" + operation;
+        final JSONObject[] result = new JSONObject[1];
+
+        // Prevents Main thread use errors
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        try {
+            URL url = new URL(urlInput);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            //type of request
+            connection.setRequestMethod(requestType);
+            connection.setRequestProperty("Content-Type", "application/json; utf-8");
+            // authorize, without this we got 403
+            //connection.setRequestProperty("x-api-key", "CEimoZkwJ26pfNfvwiXBia08JGoDVrx1aOyz5HHg");
+            connection.setDoOutput(true);
+
+            // Output stream for request body
+            try (OutputStream os = connection.getOutputStream()) {
+                byte[] input = jsonInput.getBytes("utf-8");
+                os.write(input, 0, input.length);
+            }
+
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), "utf-8"))) {
+                StringBuilder response = new StringBuilder();
+                String responseLine;
+                while ((responseLine = br.readLine()) != null) {
+                    response.append(responseLine.trim());
+                }
+                result[0] = new JSONObject(response.toString());
+                if (result[0].getString("status").equals("success")) {
+                    Log.i("Request Status", "getSicknesses Success");
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return result[0];
     }
 
     public JSONObject getPrescriptions(String token, int petId) {
@@ -116,7 +217,7 @@ public class DatabaseManager {
 
         final boolean[] valid = {false};
         String jsonInputString = operationString + tokenString + emailString + passString + roleString + phoneString + addressString + nameString;
-        System.out.println(jsonInputString);
+        Log.i("Input", jsonInputString);
         try {
             // CHANGE THIS LINK
             URL url = new URL("https://wmjb9nfbxa.execute-api.us-east-2.amazonaws.com/dev/r-badgerbytes");
@@ -127,7 +228,7 @@ public class DatabaseManager {
             // authorize, without this we got 403
             connection.setRequestProperty("x-api-key", "CEimoZkwJ26pfNfvwiXBia08JGoDVrx1aOyz5HHg");
             connection.setDoOutput(true);
-            // now grab the output stream
+            // Output stream
             try (OutputStream os = connection.getOutputStream()) {
                 byte[] input = jsonInputString.getBytes("utf-8");
                 os.write(input, 0, input.length);
@@ -156,8 +257,6 @@ public class DatabaseManager {
             ec.printStackTrace();
         }
         return valid[0];
-
-        //return false;
     }
 
     public boolean addPrescription(String medName, String dosage, String timePeriod) {
@@ -168,13 +267,69 @@ public class DatabaseManager {
 
     public boolean addAppointment(String token, int petId, String vetToken) {
         String requestType = "POST";
-        String operation = "addApointment";
+        String operation = "addAppointment";
         return false;
     }
 
-    public boolean addPet(String token, String species, String breed, String birthday) {
+    public boolean addPet(String ownerid, String species, String name, String breed, String birthday) {
         String requestType = "POST";
         String operation = "addPet";
+        String opStr = "{\"operation\":\"" + operation + "\", ";
+        String idStr = "\"ownerid\":" + ownerid + "\", ";
+        String speciesStr = "\"species\":" + species + "\", ";
+        String nameStr = "\"name\":" + name + "\", ";
+        String breedStr = "\"breed\":" + breed + "\", ";
+        String bdayStr = "\"birthday\":" + birthday + "\"}";
+        String jsonInput = opStr + idStr + speciesStr + nameStr + breedStr + bdayStr;
+
+        final String urlInput = "https://oc0oygi074.execute-api.us-east-2.amazonaws.com/dev/wiscpets";
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        try {
+            URL url = new URL(urlInput);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            // type of request
+            connection.setRequestMethod(requestType);
+            connection.setRequestProperty("Content-Type", "application/json; utf-8");
+            // authorize, without this we got 403
+            //connection.setRequestProperty("x-api-key", "CEimoZkwJ26pfNfvwiXBia08JGoDVrx1aOyz5HHg");
+            connection.setDoOutput(true);
+
+            try (OutputStream os = connection.getOutputStream()) {
+                byte[] input = jsonInput.getBytes("utf-8");
+                os.write(input, 0, input.length);
+            }
+
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), "utf-8"))) {
+                StringBuilder response = new StringBuilder();
+                String responseLine = null;
+                while ((responseLine = br.readLine()) != null) {
+                    response.append(responseLine.trim());
+                }
+                System.out.println(response.toString());
+                JSONObject result = new JSONObject(response.toString());
+                if (result.getString("status").compareTo("success") == 0) {
+                    Log.i("Request Status", "addPet Success");
+                    return true;
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } catch (ProtocolException e) {
+            e.printStackTrace();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Log.i("Request Status", "addPet Failure");
+        return false;
+    }
+
+    public boolean modifyAccount(String username, String password, String phoneNumber) {
+        String requestType = "PUT";
+        String operation = "modifyAccount";
         return false;
     }
 
@@ -196,9 +351,10 @@ public class DatabaseManager {
         return false;
     }
 
-    public boolean deletePet(String token, int petId) {
-        String requestType = "DELETE";
+    public boolean deletePet(int petId) {
+        String requestType = "POST";
         String operation = "deletePet";
+
         return false;
     }
 
@@ -236,7 +392,6 @@ public class DatabaseManager {
         final String urlInput = "https://oc0oygi074.execute-api.us-east-2.amazonaws.com/dev/wiscpets";
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-
         StrictMode.setThreadPolicy(policy);
         try {
             URL url = new URL(urlInput);
@@ -262,7 +417,7 @@ public class DatabaseManager {
                 System.out.println(response.toString());
                 JSONObject result = new JSONObject(response.toString());
                 if (result.getString("status").compareTo("success") == 0) {
-                    Log.i("Account", "Account Created Successfully");
+                    Log.i("Request Status", "addAccount Success");
                     int returnedCustomerID = Integer.parseInt(result.getString("id"));
                     System.out.println(returnedCustomerID);
                     return true;
@@ -277,6 +432,7 @@ public class DatabaseManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        Log.i("Request Status", "addAccount Failure");
         return false;
     }
 }
