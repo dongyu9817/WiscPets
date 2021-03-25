@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -48,7 +49,20 @@ public class WiscPetLoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wiscpetlogin);
         drawer = findViewById(R.id.draw_activity);
+
         t = (Toolbar) findViewById(R.id.toolbar);
+
+        //For account signup
+        Button signupBtn = (Button) findViewById(R.id.signup_Button);
+        //if signup btn is clicked, go to account create page
+
+        signupBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent c_check = new Intent(WiscPetLoginActivity.this, CreateAccountActivity.class);
+                startActivity(c_check);
+            }
+        });
 
         //enter is the login button, it will be clicked after user enters username and password
         enter = findViewById(R.id.imageView7);
@@ -103,7 +117,7 @@ public class WiscPetLoginActivity extends AppCompatActivity {
                         Intent in = new Intent(WiscPetLoginActivity.this, app_make_phone_call_activity.class);
                         startActivity(in);
                         break;
-//today's weather
+                    //today's weather
                     case R.id.nav_weather:
                         Intent browserIntentW = new Intent(Intent.ACTION_VIEW);
                         browserIntentW.setData(Uri.parse("https://weather.com/weather/hourbyhour/l/53726:4:US"));

@@ -24,7 +24,7 @@
         <activity android:name=".MainActivityClinicLogin"></activity>
         <activity android:name=".MainActivitySickChecker"></activity>
         <activity android:name=".WiscPetLoginActivity"></activity>
-
+        <activity android:name=".CreateAccountActivity"></activity>
         <activity android:name=".app.app_settings_activity"></activity>
         <activity android:name=".app.app_activity_contact_us"></activity>
         <activity android:name=".app.app_event_add_to_calendar"></activity>

@@ -14,6 +14,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
@@ -21,8 +22,7 @@
             android:elevation="10dp"
             android:theme="@style/AppTheme.NoActionBar"
             app:popupTheme="@style/Theme.AppCompat.Light"
-            tools:ignore="MissingConstraints">
-        </androidx.appcompat.widget.Toolbar>
+            tools:ignore="MissingConstraints"></androidx.appcompat.widget.Toolbar>
 
         <TextView
             android:id="@+id/textView3"
@@ -30,6 +30,7 @@
             android:layout_height="35dp"
             android:layout_marginTop="2dp"
             android:fontFamily="sans-serif"
+            android:gravity="center_horizontal"
             android:text="  "
             android:textAlignment="center"
             android:textColor="@color/black"
@@ -39,17 +40,18 @@
             app:layout_constraintHorizontal_bias="0.189"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/toolbar"
-            app:layout_constraintVertical_bias="0.013"
-            android:gravity="center_horizontal" />
+            app:layout_constraintVertical_bias="0.013" />
+
         <EditText
+            android:id="@+id/username_field"
             android:layout_width="224dp"
             android:layout_height="49dp"
             android:ems="10"
+            android:gravity="start"
             android:hint="Enter User Name"
             android:inputType="textPersonName"
             android:paddingLeft="15dp"
             android:textAlignment="textStart"
-            android:id="@+id/username_field"
             android:textColor="@color/black"
             android:textColorHint="@color/grey"
             android:textSize="22sp"
@@ -59,13 +61,12 @@
             app:layout_constraintStart_toStartOf="@+id/toolbar"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.53"
-            tools:ignore="Autofill,HardcodedText"
-            android:gravity="start" />
+            tools:ignore="Autofill,HardcodedText" />
 
         <ImageView
             android:id="@+id/imageView6"
-            android:layout_width="36dp"
-            android:layout_height="58dp"
+            android:layout_width="63dp"
+            android:layout_height="65dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="32dp"
@@ -74,16 +75,18 @@
             android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.146"
+            app:layout_constraintHorizontal_bias="0.086"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.512"
             app:srcCompat="@drawable/alltogethernow" />
+
         <EditText
             android:id="@+id/password_field"
             android:layout_width="224dp"
             android:layout_height="49dp"
             android:layout_marginEnd="12dp"
+            android:layout_marginRight="12dp"
             android:ems="10"
             android:hint="Enter Password"
             android:inputType="phone"
@@ -96,28 +99,29 @@
             app:layout_constraintHorizontal_bias="0.712"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.628"
-            android:layout_marginRight="12dp" />
+            app:layout_constraintVertical_bias="0.628" />
 
         <ImageView
             android:id="@+id/imageView9"
-            android:layout_width="30dp"
-            android:layout_height="18dp"
+            android:layout_width="70dp"
+            android:layout_height="43dp"
             android:layout_marginStart="26dp"
             android:layout_marginLeft="26dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.122"
+            app:layout_constraintHorizontal_bias="0.053"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/toolbar"
-            app:layout_constraintVertical_bias="0.626"
+            app:layout_constraintVertical_bias="0.633"
             app:srcCompat="@drawable/passwords" />
+
+
         <ImageView
             android:id="@+id/imageView7"
-            android:layout_width="106dp"
-            android:layout_height="103dp"
+            android:layout_width="89dp"
+            android:layout_height="78dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
@@ -128,8 +132,8 @@
 
         <ImageView
             android:id="@+id/login_image"
-            android:layout_width="88dp"
-            android:layout_height="211dp"
+            android:layout_width="137dp"
+            android:layout_height="225dp"
             android:layout_marginStart="155dp"
             android:layout_marginLeft="155dp"
             android:visibility="visible"
@@ -181,6 +185,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.336"
             app:srcCompat="@drawable/uw_badger" />
+
         <TextView
             android:id="@+id/android"
             android:layout_width="68dp"
@@ -202,6 +207,26 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.15" />
+
+
+        <Button
+            android:id="@+id/signup_Button"
+            android:layout_width="262dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/signup_round"
+            android:padding="15dp"
+            android:shadowColor="@android:color/transparent"
+            android:text="Sign Up"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/toolbar"
+            app:layout_constraintHorizontal_bias="0.481"
+            app:layout_constraintStart_toEndOf="@+id/toolbar"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.765" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
