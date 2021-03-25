@@ -52,7 +52,7 @@ public class DatabaseManager {
                 System.out.println(response.toString());
                 JSONObject result = new JSONObject(response.toString());
                 if (result.getString("status").compareTo("success") == 0) {
-                    Log.i("Request Status", "Validate Success");
+                    Log.i("Request Status", "validate Success");
                     int returnedCustomerID = Integer.parseInt(result.getString("id"));
                     System.out.println(returnedCustomerID);
                     return result.getString("id");
@@ -68,6 +68,7 @@ public class DatabaseManager {
             e.printStackTrace();
         }
         // Failure
+        Log.i("Request Status", "validate Failure");
         return "-1";
     }
 
@@ -99,7 +100,7 @@ public class DatabaseManager {
                 System.out.println(response.toString());
                 JSONObject result = new JSONObject(response.toString());
                 if (result.getString("status").compareTo("success") == 0) {
-                    Log.i("Request Status", "Validate Success");
+                    Log.i("Request Status", "validate Success");
                     int returnedCustomerID = Integer.parseInt(result.getString("id"));
                     System.out.println(returnedCustomerID);
                     return true;
@@ -114,6 +115,7 @@ public class DatabaseManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        Log.i("Request Status", "validate Failure");
         return false;
     }
 
@@ -165,6 +167,8 @@ public class DatabaseManager {
                 result[0] = new JSONObject(response.toString());
                 if (result[0].getString("status").equals("success")) {
                     Log.i("Request Status", "getSicknesses Success");
+                } else {
+                    Log.i("Request Status", "getSicknesses Failure");
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -241,8 +245,10 @@ public class DatabaseManager {
                 }
                 JSONObject result = new JSONObject(response.toString());
                 if (result.getString("status").compareTo("success") == 0) {
-                    Log.i("user", "modify user success");
+                    Log.i("user", "modifyAccount Success");
                     valid[0] = true;
+                } else {
+                    Log.i("Request Status", "modifyAccount Failure");
                 }
                 System.out.println(response.toString());
             } catch (JSONException e) {
@@ -354,7 +360,51 @@ public class DatabaseManager {
     public boolean deletePet(int petId) {
         String requestType = "POST";
         String operation = "deletePet";
+        String opStr = "{\"operation\":\"" + operation + "\", ";
+        String idStr = "\"petid\":\"" + petId + "\"}";
+        String jsonInput = opStr + idStr;
+        final String urlInput = "https://oc0oygi074.execute-api.us-east-2.amazonaws.com/dev/wiscpets";
 
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        try {
+            URL url = new URL(urlInput);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            // type of request
+            connection.setRequestMethod(requestType);
+            connection.setRequestProperty("Content-Type", "application/json; utf-8");
+            // authorize, without this we got 403
+            //connection.setRequestProperty("x-api-key", "CEimoZkwJ26pfNfvwiXBia08JGoDVrx1aOyz5HHg");
+            connection.setDoOutput(true);
+
+            try (OutputStream os = connection.getOutputStream()) {
+                byte[] input = jsonInput.getBytes("utf-8");
+                os.write(input, 0, input.length);
+            }
+
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), "utf-8"))) {
+                StringBuilder response = new StringBuilder();
+                String responseLine = null;
+                while ((responseLine = br.readLine()) != null) {
+                    response.append(responseLine.trim());
+                }
+                System.out.println(response.toString());
+                JSONObject result = new JSONObject(response.toString());
+                if (result.getString("status").compareTo("success") == 0) {
+                    Log.i("Request Status", "deletePet Success");
+                    return true;
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } catch (ProtocolException e) {
+            e.printStackTrace();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Log.i("Request Status", "deletePet Failure");
         return false;
     }
 
