@@ -9,9 +9,11 @@ import static org.junit.Assert.*;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
-public class ExampleUnitTest {
+public class DatabaseManagerTest {
     @Test
-    public void addition_isCorrect() {
-        assertEquals(4, 2 + 2);
+    public void testAccountCreate() {
+        DatabaseManager db = new DatabaseManager();
+        boolean result = db.addAccount("jake@email", "mypass", "Jake", "6081237654", "123 Main St");
+        System.out.println(result);
     }
 }
