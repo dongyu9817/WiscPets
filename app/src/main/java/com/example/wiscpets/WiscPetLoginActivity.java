@@ -42,6 +42,7 @@ public class WiscPetLoginActivity extends AppCompatActivity {
     EditText username;
     EditText password;
     ImageView enter;
+    DatabaseManager db;
 
 
     @Override
@@ -49,6 +50,7 @@ public class WiscPetLoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wiscpetlogin);
         drawer = findViewById(R.id.draw_activity);
+        db = new DatabaseManager();
 
         t = (Toolbar) findViewById(R.id.toolbar);
 
@@ -84,7 +86,17 @@ public class WiscPetLoginActivity extends AppCompatActivity {
         enter.setOnClickListener(new View.OnClickListener() {
                                      @Override
                                      public void onClick(View view) {
-
+                                         EditText user = findViewById(R.id.username_field);
+                                         EditText pass = findViewById(R.id.password_field);
+                                         String username = user.getText().toString();
+                                         String password = pass.getText().toString();
+                                         String token = db.createToken(username, password);
+                                         boolean loginResult = db.validate(token);
+                                         if (loginResult) {
+                                             Toast.makeText(getBaseContext(), "Login Successful!", Toast.LENGTH_SHORT).show();
+                                         } else {
+                                             Toast.makeText(getBaseContext(), "Username or Password is incorrect. Try again!", Toast.LENGTH_SHORT).show();
+                                         }
                                      }
                                  }
         );

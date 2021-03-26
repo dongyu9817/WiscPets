@@ -467,9 +467,7 @@ public class DatabaseManager {
                 System.out.println(response.toString());
                 JSONObject result = new JSONObject(response.toString());
                 if (result.getString("status").compareTo("success") == 0) {
-                    Log.i("Request Status", "addAccount Success");
-                    int returnedCustomerID = Integer.parseInt(result.getString("id"));
-                    System.out.println(returnedCustomerID);
+                    Log.i("Account", "addAccount Success");
                     return true;
                 }
             } catch (JSONException e) {
