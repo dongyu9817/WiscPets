@@ -13,6 +13,8 @@ import static android.app.PendingIntent.getActivity;
 
 public class CreateAccountActivity extends AppCompatActivity {
 
+    private DatabaseManager db = new DatabaseManager();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +32,6 @@ public class CreateAccountActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //send user info to database
-                //todo
                 String username_input = email.getText().toString();
                 String password_input = password.getText().toString();
                 String name_input = name.getText().toString();
@@ -38,6 +39,7 @@ public class CreateAccountActivity extends AppCompatActivity {
                 String phone_input = phone.getText().toString();
 
                 Toast.makeText(getBaseContext(), "Created Account Successfully!", Toast.LENGTH_SHORT).show();
+                db.addAccount(username_input, password_input, name_input, phone_input, address_input);
 
                 Intent intent = new Intent(getBaseContext(), WiscPetLoginActivity.class);
                 startActivity(intent);
