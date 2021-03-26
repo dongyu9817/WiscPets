@@ -21,6 +21,9 @@ public class CreateAccountActivity extends AppCompatActivity {
         //get user input username and password
         final EditText email = findViewById(R.id.username_field);
         final EditText password = findViewById(R.id.input_password);
+        final EditText address = findViewById(R.id.input_address);
+        final EditText phone = findViewById(R.id.input_phone);
+        final EditText name = findViewById(R.id.input_name);
         Button signup = (Button) findViewById(R.id.signup_Button);
 
         signup.setOnClickListener(new View.OnClickListener() {
@@ -30,6 +33,10 @@ public class CreateAccountActivity extends AppCompatActivity {
                 //todo
                 String username_input = email.getText().toString();
                 String password_input = password.getText().toString();
+                String name_input = name.getText().toString();
+                String address_input = address.getText().toString();
+                String phone_input = phone.getText().toString();
+
                 Toast.makeText(getBaseContext(), "Created Account Successfully!", Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(getBaseContext(), WiscPetLoginActivity.class);
