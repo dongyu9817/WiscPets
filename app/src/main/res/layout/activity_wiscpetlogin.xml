@@ -89,7 +89,7 @@
             android:layout_marginRight="12dp"
             android:ems="10"
             android:hint="Enter Password"
-            android:inputType="phone"
+            android:inputType="textPassword"
             android:paddingLeft="15sp"
             android:textColor="@color/black"
             android:textColorHint="@color/grey"
