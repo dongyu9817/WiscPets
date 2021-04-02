@@ -113,7 +113,7 @@ public class WiscPetLoginActivity extends AppCompatActivity {
 
                     //consultant
                     case R.id.nav_check_triage:
-                        Intent c_check_triage = new Intent(WiscPetLoginActivity.this, MainActivityClinicLogin.class);
+                        Intent c_check_triage = new Intent(WiscPetLoginActivity.this, WiscPetLoginActivity.class);
                         startActivity(c_check_triage);
                         break;
 
@@ -144,8 +144,8 @@ public class WiscPetLoginActivity extends AppCompatActivity {
 
                     //add to notes
                     case R.id.nav_note:
-                        //Intent c_note = new Intent(WiscPetLoginActivity.this, MainActivityNote.class);
-                        //startActivity(c_note);
+                        Intent c_note = new Intent(WiscPetLoginActivity.this, MainActivityNotebookLanding.class);
+                        startActivity(c_note);
                         break;
 
                     //about

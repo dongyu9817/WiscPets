@@ -28,7 +28,7 @@ int noteid = -1;
         noteid = intent.getIntExtra("noteid", -1);
 
         if (noteid != -1) {
-            Note note = Main2Activity.notes.get(noteid);
+            Note note = MainActivityNotebookLanding.notes.get(noteid);
             String noteContent = note.getContent();
             textView6.setText(noteContent);
         }
@@ -42,14 +42,14 @@ int noteid = -1;
         String UserInput = editText.getText().toString();
         SharedPreferences sharedPreferences = getSharedPreferences("c.sakshi.lab5", Context.MODE_PRIVATE);
 
-        String username = sharedPreferences.getString("username", "");
+        String username = sharedPreferences.getString("username", "user");
 
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
         String date = dateFormat.format(new Date());
 
         String title;
         if(noteid == -1){
-            title = "NOTE_" + (Main2Activity.notes.size() + 1);
+            title = "NOTE_" + (MainActivityNotebookLanding.notes.size() + 1);
             Log.i("title third  ", title);
 
             Helper.saveNotes(username, title, UserInput, date);
@@ -58,7 +58,7 @@ int noteid = -1;
             title = "NOTE_" + (noteid + 1);
             Helper.updateNote(title, date, UserInput);
         }
-        Intent intent = new Intent(this, Main2Activity.class);
+        Intent intent = new Intent(this, MainActivityNotebookLanding.class);
         startActivity(intent);
     }
 

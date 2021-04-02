@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,7 +23,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 
 //This is the notebook landing page
-public class Main2Activity extends AppCompatActivity {
+public class MainActivityNotebookLanding extends AppCompatActivity {
     public static ArrayList<Note> notes = new ArrayList<>();
     TextView textView2;
     @Override
@@ -34,9 +35,8 @@ public class Main2Activity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("c.sakshi.lab5" , Context.MODE_PRIVATE);
         textView2 = (TextView) findViewById(R.id.textView2);
         Intent intent = getIntent();
-        String user = sharedPreferences.getString("username", "");
+        String user = sharedPreferences.getString("username", "user");
         Log.i("SP MA2", user);
-        textView2.setText( "Welcome " + user + "!");
 
         //get sql instance
         Context context = getApplicationContext();
@@ -66,41 +66,20 @@ public class Main2Activity extends AppCompatActivity {
             }
         });
         //create array list object
-    }
 
-    @Override
-    public boolean onOptionsItemSelected (@NonNull MenuItem item){
-        switch (item.getItemId()){
-
-            case R.id.item3:
-                Toast.makeText(this, "add note selected", Toast.LENGTH_SHORT).show();
-                Intent intent2 = new Intent(this, ThirdActivity.class);
+        //add new note
+        ImageView addNote = findViewById(R.id.addButton);
+        addNote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivityNotebookLanding.this, "add note selected", Toast.LENGTH_SHORT).show();
+                Intent intent2 = new Intent(MainActivityNotebookLanding.this, ThirdActivity.class);
                 startActivity(intent2);
-
-                return true;
-            case R.id.item2:
-                Toast.makeText(this, "logout selected", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, WiscPetLoginActivity.class);
-                SharedPreferences sharedPreferences = getSharedPreferences("c.sakshi.lab5", Context.MODE_PRIVATE);
-                sharedPreferences.edit().remove("username").apply();
-                startActivity(intent);
-                gotoActivity1 ();
-                return true;
-
-            default:return super.onOptionsItemSelected(item);
-        }
+            }
+        });
     }
-    public void gotoActivity1 (){
-        Intent intent = new Intent(Main2Activity.this,WiscPetLoginActivity.class);
-         startActivity(intent);
 
-    }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.example_menu, menu);
-        return true;
-    }
+
 
 
 }

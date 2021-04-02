@@ -11,7 +11,7 @@
         android:roundIcon="@drawable/circle1"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
-        <activity android:name=".Main2Activity">
+        <activity android:name=".MainActivityNotebookLanding">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>

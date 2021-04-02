@@ -23,6 +23,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.wiscpets.app.app_activity_contact_us;
+import com.example.wiscpets.app.app_event_add_to_calendar;
+import com.example.wiscpets.app.app_make_phone_call_activity;
 import com.google.android.material.navigation.NavigationView;
 
 
@@ -102,73 +105,89 @@ public class MainActivitySickChecker extends AppCompatActivity {
                 //       Toast.makeText(MainActivitySickChecker.this, "Please select pet type", Toast.LENGTH_LONG).show();
             }
         });
-//        nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-//            @Override
-//            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-//                switch(menuItem.getItemId())
-//                {
-//                    case R.id.nav_sos:
-//                        Intent in = new Intent(MainActivitySickChecker.this, com.example.wiscpets.app.app_make_phone_call_activity.class);
-//                        startActivity(in);
-//                    break;
-//                    case R.id.nav_events:
-//                        Intent inE = new Intent(MainActivitySickChecker.this, com.example.wiscpets.app.app_event_add_to_calendar.class);
-//                        startActivity(inE);
-//                        break;
-//                    case R.id.nav_share:
-//                        Intent myIntent = new Intent(Intent.ACTION_SEND);
-//                        myIntent.setType("text/plain");
-//                        startActivity(Intent.createChooser(myIntent,"SHARE USING"));
-//                        break;
-//                    case R.id.nav_hosp:   // search for nearby hospital
-//                        Intent browserIntent = new Intent(Intent.ACTION_VIEW);
-//                        browserIntent.setData(Uri.parse("https://www.google.com/maps/search/animal+hospital/@43.0665967,-89.4442024,12z/data=!4m8!2m7!3m6!1sanimal+hospital!2sUniversity+of+Wisconsin+School+of+Medicine+and+Public+Health,+750+Highland+Ave,+Madison,+WI+53726!3s0x8807aced2e217f59:0x40c12eea006ffa4a!4m2!1d-89.430191!2d43.0775032"));
-//                        startActivity(browserIntent);
-//                        break;
-//                    case R.id.nav_cntus:
-//                        Intent c_us = new Intent(app.www.wiscpets.MainActivitySickChecker.this, com.example.wiscpets.app.app_activity_contact_us.class);
-//                        startActivity(c_us);
-//                        break;
-//                    case R.id.nav_check:
-//                        Intent c_check = new Intent(MainActivitySickChecker.this, MainActivitySickChecker.class);
-//                        startActivity( c_check);
-//                        break;
-//                    case R.id.nav_note:
-//                        //Intent c_note = new Intent(MainActivitySickChecker.this, MainActivityNote.class);
-//                       // startActivity(c_note);
-//                        break;
-//
-//                    case R.id.nav_check_triage:
-//                        Intent c_check_triage = new Intent(app.www.wiscpets.MainActivitySickChecker.this, ClinicMainLoginActivity.class);
-//                        startActivity( c_check_triage);
-//                        break;
-//                    case R.id.nav_weather:
-//                        Intent browserIntentW = new Intent(Intent.ACTION_VIEW);
-//                        browserIntentW.setData(Uri.parse("https://weather.com/weather/hourbyhour/l/53726:4:US"));
-//                        startActivity(browserIntentW);
-//                      break;
-//                    case R.id.nav_about:
-//                        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(app.www.wiscpets.MainActivitySickChecker.this);
-//                        alertDialogBuilder.setMessage("This app provides initial diagnosis about your pets' health." +
-//                                " Nurse and veterinarian can use Triage for doctor's visit." +
-//                                " Notes taking, weather forecast, clinic search, event management and phone call functions are provided too. ");
-//                                alertDialogBuilder.setPositiveButton("OK",
-//                                        new DialogInterface.OnClickListener() {
-//                                            @Override
-//                                            public void onClick(DialogInterface arg0, int arg1) {
-//                                              //  Toast.makeText(MainActivity.this,"You clicked yes    button",Toast.LENGTH_LONG).show();
-//                                            }
-//                                        });
-//                        AlertDialog alertDialog = alertDialogBuilder.create();
-//                        alertDialog.show();
-//                        break;
-//                }
-//                drawer.closeDrawer(GravityCompat.START);
-//                return true;
-//            }
-//        });
-//    }
+        nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    //sickness checker
+                    case R.id.nav_check:
+                        Intent c_check = new Intent(MainActivitySickChecker.this, MainActivitySickChecker.class);
+                        startActivity(c_check);
+                        break;
+
+                    //consultant
+                    case R.id.nav_check_triage:
+                        Intent c_check_triage = new Intent(MainActivitySickChecker.this, WiscPetLoginActivity.class);
+                        startActivity(c_check_triage);
+                        break;
+
+                    //search for nearby hospital
+                    case R.id.nav_hosp:   // search for nearby hospital
+                        Intent browserIntent = new Intent(Intent.ACTION_VIEW);
+                        browserIntent.setData(Uri.parse("https://www.google.com/maps/search/animal+hospital/@43.0665967,-89.4442024,12z/data=!4m8!2m7!3m6!1sanimal+hospital!2sUniversity+of+Wisconsin+School+of+Medicine+and+Public+Health,+750+Highland+Ave,+Madison,+WI+53726!3s0x8807aced2e217f59:0x40c12eea006ffa4a!4m2!1d-89.430191!2d43.0775032"));
+                        startActivity(browserIntent);
+                        break;
+
+                    //emergency call
+                    case R.id.nav_sos:
+                        Intent in = new Intent(MainActivitySickChecker.this, app_make_phone_call_activity.class);
+                        startActivity(in);
+                        break;
+                    //today's weather
+                    case R.id.nav_weather:
+                        Intent browserIntentW = new Intent(Intent.ACTION_VIEW);
+                        browserIntentW.setData(Uri.parse("https://weather.com/weather/hourbyhour/l/53726:4:US"));
+                        startActivity(browserIntentW);
+                        break;
+
+                    //add to calender
+                    case R.id.nav_events:
+                        Intent inE = new Intent(MainActivitySickChecker.this, app_event_add_to_calendar.class);
+                        startActivity(inE);
+                        break;
+
+                    //add to notes
+                    case R.id.nav_note:
+                        Intent c_note = new Intent(MainActivitySickChecker.this, MainActivityNotebookLanding.class);
+                        startActivity(c_note);
+                        break;
+
+                    //about
+                    case R.id.nav_about:
+                        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivitySickChecker.this);
+                        alertDialogBuilder.setMessage("This app provides initial diagnosis about your pets' health." +
+                                " Nurse and veterinarian can use Triage for doctor's visit." +
+                                " Notes taking, weather forecast, clinic search, event management and phone call functions are provided too. ");
+                        alertDialogBuilder.setPositiveButton("OK",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface arg0, int arg1) {
+                                        //  Toast.makeText(MainActivity.this,"You clicked yes    button",Toast.LENGTH_LONG).show();
+                                    }
+                                });
+                        AlertDialog alertDialog = alertDialogBuilder.create();
+                        alertDialog.show();
+                        break;
+
+                    //Under connection-share
+                    case R.id.nav_share:
+                        Intent myIntent = new Intent(Intent.ACTION_SEND);
+                        myIntent.setType("text/plain");
+                        startActivity(Intent.createChooser(myIntent, "SHARE USING"));
+                        break;
+                    //Under connection-contact us
+                    case R.id.nav_cntus:
+                        Intent c_us = new Intent(MainActivitySickChecker.this, app_activity_contact_us.class);
+                        startActivity(c_us);
+                        break;
+
+                }
+                drawer.closeDrawer(GravityCompat.START);
+                return true;
+            }
+        });
     }
+
     /**
      * Inflates the menu, and adds items to the action bar if it is present.
      *
