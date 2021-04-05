@@ -483,4 +483,94 @@ public class DatabaseManager {
         Log.i("Request Status", "addAccount Failure");
         return false;
     }
+
+    public JSONObject getWeather() {
+        String requestType = "GET";
+        String operation = "getWeather";
+
+        final String urlInput = "https://oc0oygi074.execute-api.us-east-2.amazonaws.com/dev/wiscpets?operation=" + operation;
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        try {
+            URL url = new URL(urlInput);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            // type of request
+            connection.setRequestMethod(requestType);
+            connection.setRequestProperty("Content-Type", "application/json; utf-8");
+            // authorize, without this we got 403
+            //connection.setRequestProperty("x-api-key", "CEimoZkwJ26pfNfvwiXBia08JGoDVrx1aOyz5HHg");
+            connection.setDoOutput(false);
+
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), "utf-8"))) {
+                StringBuilder response = new StringBuilder();
+                String responseLine = null;
+                while ((responseLine = br.readLine()) != null) {
+                    response.append(responseLine.trim());
+                }
+                System.out.println(response.toString());
+                JSONObject result = new JSONObject(response.toString());
+                if (result.getString("status").compareTo("success") == 0) {
+                    Log.i("Request Status", "getWeather Success");
+                    return result;
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } catch (ProtocolException e) {
+            e.printStackTrace();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        // Failure
+        Log.i("Request Status", "getWeather Failure");
+        return null;
+    }
+
+    public JSONObject getWeather(String city, String state, String country) {
+        String requestType = "GET";
+        String operation = "getWeather";
+
+        final String urlInput = "https://oc0oygi074.execute-api.us-east-2.amazonaws.com/dev/wiscpets?operation=" + operation + "&city=" + city + "&state=" + state + "&country=" + country;
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        try {
+            URL url = new URL(urlInput);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            // type of request
+            connection.setRequestMethod(requestType);
+            connection.setRequestProperty("Content-Type", "application/json; utf-8");
+            // authorize, without this we got 403
+            //connection.setRequestProperty("x-api-key", "CEimoZkwJ26pfNfvwiXBia08JGoDVrx1aOyz5HHg");
+            connection.setDoOutput(false);
+
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), "utf-8"))) {
+                StringBuilder response = new StringBuilder();
+                String responseLine = null;
+                while ((responseLine = br.readLine()) != null) {
+                    response.append(responseLine.trim());
+                }
+                System.out.println(response.toString());
+                JSONObject result = new JSONObject(response.toString());
+                if (result.getString("status").compareTo("success") == 0) {
+                    Log.i("Request Status", "getWeather Success");
+                    return result;
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } catch (ProtocolException e) {
+            e.printStackTrace();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        // Failure
+        Log.i("Request Status", "getWeather Failure");
+        return null;
+    }
 }
