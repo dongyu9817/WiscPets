@@ -1,4 +1,4 @@
-package app.www.wiscpets.sickcheckmodule;
+package com.example.wiscpets.sickcheckmodule;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
@@ -8,8 +8,8 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import app.www.wiscpets.R;
-import app.www.wiscpets.app.app_home;
+import com.example.wiscpets.R;
+import com.example.wiscpets.app.app_home;
 
 public class activity_symptoms extends AppCompatActivity {
     Button dis;
@@ -57,10 +57,10 @@ public class activity_symptoms extends AppCompatActivity {
             setContentView(R.layout.activity_symptoms);
         }
         else  {
-            if (selectedType.equals("Cat"))
-                setContentView(R.layout.activity_symptoms_cat);
-            else
-                setContentView(R.layout.activity_symptoms_covid);
+          //  if (selectedType.equals("Cat"))
+              //  setContentView(R.layout.activity_symptoms_cat);
+         //   else
+              //  setContentView(R.layout.activity_symptoms_covid);
         }
 
         dis= findViewById(R.id.disease);

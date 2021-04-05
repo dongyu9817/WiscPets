@@ -1,4 +1,4 @@
-package app.www.wiscpets.sickcheckmodule;
+package com.example.wiscpets.sickcheckmodule;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -10,8 +10,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import app.www.wiscpets.R;
-import app.www.wiscpets.app.app_home;
+import com.example.wiscpets.R;
+import com.example.wiscpets.app.app_home;
 
 public class activity_disease extends AppCompatActivity {
     TextView head ;

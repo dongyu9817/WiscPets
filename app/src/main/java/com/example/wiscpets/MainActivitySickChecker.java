@@ -1,4 +1,4 @@
-package app.www.wiscpets;
+package com.example.wiscpets;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -23,13 +23,13 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout ;
 import com.google.android.material.navigation.NavigationView;
 
-import app.www.wiscpets.app.app_activity_contact_us;
-import app.www.wiscpets.app.app_event_add_to_calendar;
-import app.www.wiscpets.app.app_home;
-import app.www.wiscpets.app.app_make_phone_call_activity;
-import app.www.wiscpets.app.app_settings_activity;
-import app.www.wiscpets.notesmodule.MainActivityNote;
-import app.www.wiscpets.sickcheckmodule.activity_symptoms;
+import com.example.wiscpets.app.app_activity_contact_us;
+import com.example.wiscpets.app.app_event_add_to_calendar;
+import com.example.wiscpets.app.app_home;
+import com.example.wiscpets.app.app_make_phone_call_activity;
+import com.example.wiscpets.app.app_settings_activity;
+//import com.example.wiscpets.notesmodule.MainActivityNote;
+import com.example.wiscpets.sickcheckmodule.activity_symptoms;
 
 public class MainActivitySickChecker extends AppCompatActivity {
     Toolbar t;
@@ -137,16 +137,16 @@ public class MainActivitySickChecker extends AppCompatActivity {
                         Intent c_us = new Intent(MainActivitySickChecker.this, app_activity_contact_us.class);
                         startActivity(c_us);
                         break;
-                    case R.id.nav_note:
-                        Intent c_note = new Intent(MainActivitySickChecker.this, MainActivityNote.class);
-                        startActivity(c_note);
-                        break;
-                    case R.id.nav_check_triage:
+                  //  case R.id.nav_note:
+                      //  Intent c_note = new Intent(MainActivitySickChecker.this, MainActivityNote.class);
+                      //  startActivity(c_note);
+                       // break;
+                 //   case R.id.nav_check_triage:
                        // Intent c_check_triage = new Intent(MainActivity.this, ERMainLoginActivity.class);
-                        Intent c_check_triage = new Intent(MainActivitySickChecker.this, ClinicMainLoginActivity.class);
+                     //   Intent c_check_triage = new Intent(MainActivitySickChecker.this, ClinicMainLoginActivity.class);
 
-                        startActivity( c_check_triage);
-                        break;
+                     //   startActivity( c_check_triage);
+                       // break;
                     case R.id.nav_weather:
                         Intent browserIntentW = new Intent(Intent.ACTION_VIEW);
                         browserIntentW.setData(Uri.parse("https://weather.com/weather/hourbyhour/l/53726:4:US"));
