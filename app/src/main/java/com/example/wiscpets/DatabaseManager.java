@@ -223,8 +223,7 @@ public class DatabaseManager {
         String jsonInputString = operationString + tokenString + emailString + passString + roleString + phoneString + addressString + nameString;
         Log.i("Input", jsonInputString);
         try {
-            // CHANGE THIS LINK
-            URL url = new URL("https://wmjb9nfbxa.execute-api.us-east-2.amazonaws.com/dev/r-badgerbytes");
+            URL url = new URL("https://oc0oygi074.execute-api.us-east-2.amazonaws.com/dev/wiscpets");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             // type of request
             connection.setRequestMethod("POST");
