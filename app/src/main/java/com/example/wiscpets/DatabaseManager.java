@@ -230,7 +230,7 @@ public class DatabaseManager {
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Content-Type", "application/json; utf-8");
             // authorize, without this we got 403
-            connection.setRequestProperty("x-api-key", "CEimoZkwJ26pfNfvwiXBia08JGoDVrx1aOyz5HHg");
+            //connection.setRequestProperty("x-api-key", "CEimoZkwJ26pfNfvwiXBia08JGoDVrx1aOyz5HHg");
             connection.setDoOutput(true);
             // Output stream
             try (OutputStream os = connection.getOutputStream()) {
@@ -271,9 +271,60 @@ public class DatabaseManager {
         return false;
     }
 
-    public boolean addAppointment(String token, int petId, String vetToken) {
+    public boolean addAppointment(String ownerId, String petId, String vetId, String date, String reason, String time) {
         String requestType = "POST";
         String operation = "addAppointment";
+        String opStr = "{\"operation\":\"" + operation + "\", ";
+        String ownerStr = "\"ownerid\":\"" + ownerId + "\", ";
+        String petStr = "\"petid\":\"" + petId + "\", ";
+        String vetStr = "\"vetid\":\"" + vetId + "\", ";
+        String dateStr = "\"dt\":\"" + date + "\", ";
+        String reasonStr = "\"reason\":\"" + reason + "\", ";
+        String timeStr = "\"time\":\"" + time + "\"}";
+        String jsonInput = opStr + ownerStr + petStr + vetStr + dateStr + reasonStr + timeStr;
+
+        final String urlInput = "https://oc0oygi074.execute-api.us-east-2.amazonaws.com/dev/wiscpets";
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        try {
+            URL url = new URL(urlInput);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            // type of request
+            connection.setRequestMethod(requestType);
+            connection.setRequestProperty("Content-Type", "application/json; utf-8");
+            // authorize, without this we got 403
+            //connection.setRequestProperty("x-api-key", "CEimoZkwJ26pfNfvwiXBia08JGoDVrx1aOyz5HHg");
+            connection.setDoOutput(true);
+
+            try (OutputStream os = connection.getOutputStream()) {
+                byte[] input = jsonInput.getBytes("utf-8");
+                os.write(input, 0, input.length);
+            }
+
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), "utf-8"))) {
+                StringBuilder response = new StringBuilder();
+                String responseLine = null;
+                while ((responseLine = br.readLine()) != null) {
+                    response.append(responseLine.trim());
+                }
+                System.out.println(response.toString());
+                JSONObject result = new JSONObject(response.toString());
+                if (result.getString("status").compareTo("success") == 0) {
+                    Log.i("Request Status", "addAppointment Success");
+                    return true;
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } catch (ProtocolException e) {
+            e.printStackTrace();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Log.i("Request Status", "addAppointment Failure");
         return false;
     }
 
