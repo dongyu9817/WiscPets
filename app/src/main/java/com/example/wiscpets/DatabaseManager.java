@@ -40,7 +40,7 @@ public class DatabaseManager {
             connection.setRequestMethod(requestType);
             connection.setRequestProperty("Content-Type", "application/json; utf-8");
             // authorize, without this we got 403
-            //connection.setRequestProperty("x-api-key", "CEimoZkwJ26pfNfvwiXBia08JGoDVrx1aOyz5HHg");
+            connection.setRequestProperty("x-api-key", "SeVNjubzye8jacTBCdhH64qg58NG05sQ2Z8GDDgc");
             connection.setDoOutput(false);
 
             try (BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), "utf-8"))) {
@@ -88,7 +88,7 @@ public class DatabaseManager {
             connection.setRequestMethod(requestType);
             connection.setRequestProperty("Content-Type", "application/json; utf-8");
             // authorize, without this we got 403
-            //connection.setRequestProperty("x-api-key", "CEimoZkwJ26pfNfvwiXBia08JGoDVrx1aOyz5HHg");
+            connection.setRequestProperty("x-api-key", "SeVNjubzye8jacTBCdhH64qg58NG05sQ2Z8GDDgc");
             connection.setDoOutput(false);
 
             try (BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), "utf-8"))) {
@@ -149,7 +149,7 @@ public class DatabaseManager {
             connection.setRequestMethod(requestType);
             connection.setRequestProperty("Content-Type", "application/json; utf-8");
             // authorize, without this we got 403
-            //connection.setRequestProperty("x-api-key", "CEimoZkwJ26pfNfvwiXBia08JGoDVrx1aOyz5HHg");
+            connection.setRequestProperty("x-api-key", "SeVNjubzye8jacTBCdhH64qg58NG05sQ2Z8GDDgc");
             connection.setDoOutput(true);
 
             // Output stream for request body
@@ -229,7 +229,7 @@ public class DatabaseManager {
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Content-Type", "application/json; utf-8");
             // authorize, without this we got 403
-            //connection.setRequestProperty("x-api-key", "CEimoZkwJ26pfNfvwiXBia08JGoDVrx1aOyz5HHg");
+            connection.setRequestProperty("x-api-key", "SeVNjubzye8jacTBCdhH64qg58NG05sQ2Z8GDDgc");
             connection.setDoOutput(true);
             // Output stream
             try (OutputStream os = connection.getOutputStream()) {
@@ -293,7 +293,7 @@ public class DatabaseManager {
             connection.setRequestMethod(requestType);
             connection.setRequestProperty("Content-Type", "application/json; utf-8");
             // authorize, without this we got 403
-            //connection.setRequestProperty("x-api-key", "CEimoZkwJ26pfNfvwiXBia08JGoDVrx1aOyz5HHg");
+            connection.setRequestProperty("x-api-key", "SeVNjubzye8jacTBCdhH64qg58NG05sQ2Z8GDDgc");
             connection.setDoOutput(true);
 
             try (OutputStream os = connection.getOutputStream()) {
@@ -349,7 +349,7 @@ public class DatabaseManager {
             connection.setRequestMethod(requestType);
             connection.setRequestProperty("Content-Type", "application/json; utf-8");
             // authorize, without this we got 403
-            //connection.setRequestProperty("x-api-key", "CEimoZkwJ26pfNfvwiXBia08JGoDVrx1aOyz5HHg");
+            connection.setRequestProperty("x-api-key", "SeVNjubzye8jacTBCdhH64qg58NG05sQ2Z8GDDgc");
             connection.setDoOutput(true);
 
             try (OutputStream os = connection.getOutputStream()) {
@@ -424,7 +424,7 @@ public class DatabaseManager {
             connection.setRequestMethod(requestType);
             connection.setRequestProperty("Content-Type", "application/json; utf-8");
             // authorize, without this we got 403
-            //connection.setRequestProperty("x-api-key", "CEimoZkwJ26pfNfvwiXBia08JGoDVrx1aOyz5HHg");
+            connection.setRequestProperty("x-api-key", "SeVNjubzye8jacTBCdhH64qg58NG05sQ2Z8GDDgc");
             connection.setDoOutput(true);
 
             try (OutputStream os = connection.getOutputStream()) {
@@ -500,7 +500,7 @@ public class DatabaseManager {
             connection.setRequestMethod(requestType);
             connection.setRequestProperty("Content-Type", "application/json; utf-8");
             // authorize, without this we got 403
-            //connection.setRequestProperty("x-api-key", "CEimoZkwJ26pfNfvwiXBia08JGoDVrx1aOyz5HHg");
+            connection.setRequestProperty("x-api-key", "SeVNjubzye8jacTBCdhH64qg58NG05sQ2Z8GDDgc");
             connection.setDoOutput(true);
 
             try (OutputStream os = connection.getOutputStream()) {
@@ -549,7 +549,7 @@ public class DatabaseManager {
             connection.setRequestMethod(requestType);
             connection.setRequestProperty("Content-Type", "application/json; utf-8");
             // authorize, without this we got 403
-            //connection.setRequestProperty("x-api-key", "CEimoZkwJ26pfNfvwiXBia08JGoDVrx1aOyz5HHg");
+            connection.setRequestProperty("x-api-key", "SeVNjubzye8jacTBCdhH64qg58NG05sQ2Z8GDDgc");
             connection.setDoOutput(false);
 
             try (BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), "utf-8"))) {
@@ -594,7 +594,7 @@ public class DatabaseManager {
             connection.setRequestMethod(requestType);
             connection.setRequestProperty("Content-Type", "application/json; utf-8");
             // authorize, without this we got 403
-            //connection.setRequestProperty("x-api-key", "CEimoZkwJ26pfNfvwiXBia08JGoDVrx1aOyz5HHg");
+            connection.setRequestProperty("x-api-key", "SeVNjubzye8jacTBCdhH64qg58NG05sQ2Z8GDDgc");
             connection.setDoOutput(false);
 
             try (BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), "utf-8"))) {
