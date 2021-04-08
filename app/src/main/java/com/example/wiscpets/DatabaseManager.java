@@ -264,7 +264,7 @@ public class DatabaseManager {
         return valid[0];
     }
 
-    public boolean addPrescription(String medName, String dosage, String timePeriod) {
+    public boolean addPrescription(int ownerId, int petId, String prescriptionName, String dosage, String startDate, String endDate){
         String requestType = "POST";
         String operation = "addPrescription";
         return false;
