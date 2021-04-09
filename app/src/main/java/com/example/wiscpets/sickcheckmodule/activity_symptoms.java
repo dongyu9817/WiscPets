@@ -57,6 +57,7 @@ public class activity_symptoms extends AppCompatActivity {
             setContentView(R.layout.activity_symptoms);
         }
         else  {
+            setContentView(R.layout.activity_symptoms);
           //  if (selectedType.equals("Cat"))
               //  setContentView(R.layout.activity_symptoms_cat);
          //   else

@@ -102,6 +102,7 @@ public class MainActivitySickChecker extends AppCompatActivity {
 
                 }
                 Intent symp = new Intent(MainActivitySickChecker.this, activity_symptoms.class);
+                startActivity(symp);
                 symp.putExtra("name",name);
                 symp.putExtra("selectedType",selectedType);
                 if (selectedType.length() > 0)
