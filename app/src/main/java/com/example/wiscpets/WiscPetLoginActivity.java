@@ -33,6 +33,8 @@ import com.example.wiscpets.app.app_make_phone_call_activity;
 import com.example.wiscpets.app.app_settings_activity;
 import com.google.android.material.navigation.NavigationView;
 
+import org.json.JSONObject;
+
 /**
  * login into the Application.
  */
@@ -92,6 +94,9 @@ public class WiscPetLoginActivity extends AppCompatActivity {
                                          String password = pass.getText().toString();
                                          String token = db.createToken(username, password);
                                          boolean loginResult = db.validate(token);
+                                         Intent gotoConsultation = new Intent(WiscPetLoginActivity.this, MainActivityConsultationOwners.class);
+                                         startActivity(gotoConsultation);
+
                                          if (loginResult) {
                                              Toast.makeText(getBaseContext(), "Login Successful!", Toast.LENGTH_SHORT).show();
                                          } else {
@@ -100,6 +105,7 @@ public class WiscPetLoginActivity extends AppCompatActivity {
                                      }
                                  }
         );
+
 
         nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override

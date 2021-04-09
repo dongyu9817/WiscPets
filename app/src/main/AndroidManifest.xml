@@ -31,6 +31,7 @@
         <activity android:name=".app.app_make_phone_call_activity"></activity>
         <activity android:name=".app.app_preference_activity"></activity>
         <activity android:name=".clinic_module.AboutERVisitActivity"></activity>
+        <activity android:name=".MainActivityConsultationOwners"></activity>
         <activity
             android:name="com.example.wiscpets.sickcheckmodule.activity_disease"
             android:screenOrientation="portrait"
