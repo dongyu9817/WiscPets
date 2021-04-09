@@ -134,15 +134,17 @@ public class MainActivitySickChecker extends AppCompatActivity {
                         browserIntent.setData(Uri.parse("https://www.google.com/maps/search/animal+hospital/@43.0665967,-89.4442024,12z/data=!4m8!2m7!3m6!1sanimal+hospital!2sUniversity+of+Wisconsin+School+of+Medicine+and+Public+Health,+750+Highland+Ave,+Madison,+WI+53726!3s0x8807aced2e217f59:0x40c12eea006ffa4a!4m2!1d-89.430191!2d43.0775032"));
                         startActivity(browserIntent);
                         break;
+                    case R.id.nav_note:
+                        Intent c_note = new Intent(MainActivitySickChecker.this, MainActivityNotebookLanding.class);
+                        startActivity(c_note);
+                        break;
                     case R.id.nav_cntus:
                         Intent c_us = new Intent(MainActivitySickChecker.this, app_activity_contact_us.class);
                         startActivity(c_us);
                         break;
                         /*
-                    case R.id.nav_note:
-                        Intent c_note = new Intent(MainActivitySickChecker.this, MainActivityNote.class);
-                        startActivity(c_note);
-                        break;
+
+
                     case R.id.nav_check_triage:
                        // Intent c_check_triage = new Intent(MainActivity.this, ERMainLoginActivity.class);
                         Intent c_check_triage = new Intent(MainActivitySickChecker.this, ClinicMainLoginActivity.class);
