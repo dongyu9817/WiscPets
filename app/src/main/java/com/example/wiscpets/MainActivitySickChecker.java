@@ -28,7 +28,6 @@ import com.example.wiscpets.app.app_event_add_to_calendar;
 import com.example.wiscpets.app.app_home;
 import com.example.wiscpets.app.app_make_phone_call_activity;
 import com.example.wiscpets.app.app_settings_activity;
-//import com.example.wiscpets.notesmodule.MainActivityNote;
 import com.example.wiscpets.sickcheckmodule.activity_symptoms;
 
 public class MainActivitySickChecker extends AppCompatActivity {
