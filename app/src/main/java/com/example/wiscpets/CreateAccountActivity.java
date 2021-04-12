@@ -38,9 +38,19 @@ public class CreateAccountActivity extends AppCompatActivity {
                 String address_input = address.getText().toString();
                 String phone_input = phone.getText().toString();
 
-                Toast.makeText(getBaseContext(), "Created Account Successfully!", Toast.LENGTH_SHORT).show();
-                db.addAccount(username_input, password_input, name_input, phone_input, address_input);
+                if (phone_input.length() < 10 || Integer.parseInt(phone_input) < 0) {
+                    Toast.makeText(getBaseContext(), "Invalid phone number: Please include Area Code", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
+                boolean success = db.addAccount(username_input, password_input, name_input, phone_input, address_input);
+
+                if (success) {
+                    Toast.makeText(getBaseContext(), "Created Account Successfully!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getBaseContext(), "Failed To Create Account", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Intent intent = new Intent(getBaseContext(), WiscPetLoginActivity.class);
                 startActivity(intent);
             }
