@@ -94,10 +94,11 @@ public class MainActivitySickChecker extends AppCompatActivity {
                     case R.id.cat:
                         selectedType = "Cat";
                         break;
+                        /*
                     case R.id.Covid:  //Covid-19 check
                         selectedType = "Covid";
                         break;
-
+                        */
 
                 }
                 Intent symp = new Intent(MainActivitySickChecker.this, activity_symptoms.class);
