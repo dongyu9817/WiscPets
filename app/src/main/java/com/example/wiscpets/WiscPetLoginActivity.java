@@ -94,11 +94,11 @@ public class WiscPetLoginActivity extends AppCompatActivity {
                                          String password = pass.getText().toString();
                                          String token = db.createToken(username, password);
                                          boolean loginResult = db.validate(token);
-                                         Intent gotoConsultation = new Intent(WiscPetLoginActivity.this, MainActivityConsultationOwners.class);
-                                         startActivity(gotoConsultation);
 
                                          if (loginResult) {
                                              Toast.makeText(getBaseContext(), "Login Successful!", Toast.LENGTH_SHORT).show();
+                                             Intent gotoConsultation = new Intent(WiscPetLoginActivity.this, MainActivityConsultationOwners.class);
+                                             startActivity(gotoConsultation);
                                          } else {
                                              Toast.makeText(getBaseContext(), "Username or Password is incorrect. Try again!", Toast.LENGTH_SHORT).show();
                                          }
