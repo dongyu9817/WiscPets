@@ -38,7 +38,7 @@ public class MainActivitySickChecker extends AppCompatActivity {
     ImageView enter;
     RadioButton dog;
     RadioButton cat;
-    RadioButton covid;
+    //RadioButton covid;
     RadioGroup rg;
 
     @Override
@@ -52,7 +52,7 @@ public class MainActivitySickChecker extends AppCompatActivity {
         enter = findViewById(R.id.imageView7);
         dog = findViewById(R.id.dog);
         cat = findViewById(R.id.cat);
-        covid = findViewById(R.id.Covid);
+       // covid = findViewById(R.id.Covid);
 
         rg=findViewById(R.id.rg1);
         PreferenceManager.setDefaultValues(this, R.xml.pref_general, false);
