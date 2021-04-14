@@ -181,7 +181,7 @@ public class DatabaseManager {
         return result[0];
     }
 
-    public JSONObject getPrescriptions(String token, int petId) {
+    public JSONObject getPrescriptions(String token, String petId) {
         String requestType = "GET";
         String operation = "getPrescriptions";
         return null;
@@ -199,7 +199,7 @@ public class DatabaseManager {
         return null;
     }
 
-    public JSONObject getPetData(String token, int petId) {
+    public JSONObject getPetData(String token, String petId) {
         String requestType = "GET";
         String operation = "getPetData";
         return null;
@@ -215,7 +215,6 @@ public class DatabaseManager {
         String passString = "\"password\":\"" + pass + "\", ";
         String roleString = "\"role\":\"" + role + "\", ";
         String phoneString = "\"phone\":\"" + phone + "\", ";
-        //String firstAndLastString = "\"name\":\"" + firstAndLast + "\", ";
         String addressString = "\"address\":\"" + address + "\", ";
         String nameString = "\"name\":\"" + name + "\", ";
 
@@ -264,7 +263,7 @@ public class DatabaseManager {
         return valid[0];
     }
 
-    public boolean addPrescription(int ownerId, int petId, String prescriptionName, String dosage, String startDate, String endDate){
+    public boolean addPrescription(String ownerId, String petId, String prescriptionName, String dosage, String startDate, String endDate){
         String requestType = "POST";
         String operation = "addPrescription";
         return false;
@@ -383,13 +382,7 @@ public class DatabaseManager {
         return false;
     }
 
-    public boolean modifyAccount(String username, String password, String phoneNumber) {
-        String requestType = "PUT";
-        String operation = "modifyAccount";
-        return false;
-    }
-
-    public boolean modifyPrescription(String token, int petId, String prescription, String dosage) {
+    public boolean modifyPrescription(String token, String petId, String prescription, String dosage) {
         String requestType = "PUT";
         String operation = "modifyPrescription";
         return false;
@@ -401,13 +394,13 @@ public class DatabaseManager {
         return false;
     }
 
-    public boolean modifyPet(String token, int petId, String name, String breed, String birthday) {
+    public boolean modifyPet(String token, String petId, String name, String breed, String birthday) {
         String requestType = "PUT";
         String operation = "modifyPet";
         return false;
     }
 
-    public boolean deletePet(int petId) {
+    public boolean deletePet(String petId) {
         String requestType = "POST";
         String operation = "deletePet";
         String opStr = "{\"operation\":\"" + operation + "\", ";
@@ -458,7 +451,7 @@ public class DatabaseManager {
         return false;
     }
 
-    public boolean deletePrescription(String token, int petId, String prescription) {
+    public boolean deletePrescription(String token, String petId, String prescription) {
         String requestType = "DELETE";
         String operation = "deletePrescription";
         return false;
