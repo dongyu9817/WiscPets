@@ -8,6 +8,7 @@ import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -35,7 +36,7 @@ public class MainActivitySickChecker extends AppCompatActivity {
     DrawerLayout drawer;
     EditText nametext;
     EditText agetext;
-    ImageView enter;
+    Button enter;
     RadioButton dog;
     RadioButton cat;
     //RadioButton covid;
@@ -49,7 +50,7 @@ public class MainActivitySickChecker extends AppCompatActivity {
         t = (Toolbar) findViewById(R.id.toolbar);
         nametext = findViewById(R.id.nametext);
         agetext = findViewById(R.id.agetext);
-        enter = findViewById(R.id.imageView7);
+        enter = findViewById(R.id.enter_Button);
         dog = findViewById(R.id.dog);
         cat = findViewById(R.id.cat);
        // covid = findViewById(R.id.Covid);
