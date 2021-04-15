@@ -25,7 +25,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         tools:ignore="MissingConstraints">
-
+1
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="140dp"
@@ -40,7 +40,7 @@
             android:fontFamily="sans-serif"
             android:paddingTop="8dp"
             android:paddingLeft="8dp"
-            android:text="WISC Pets' MediConsult"
+            android:text="WiscPets"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColor="@color/white"
             android:textSize="35sp" />
