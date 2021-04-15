@@ -37,7 +37,7 @@ import static org.junit.Assert.*;
 @Config(sdk = Build.VERSION_CODES.P)
 public class SicknessCheckerTests {
 
-    MainActivitySickChecker activity;
+    private MainActivitySickChecker activity;
 
     @Before
     public void setup() {

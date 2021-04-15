@@ -77,7 +77,7 @@ public class NotebookHomepageTests {
         ListView noteList = activity.findViewById(R.id.ListView);
         int originalLength = activity.displayNotes.size();
 
-        noteList.getAdapter().getView(0, null, null).performClick();
+        noteList.getAdapter().getView(0, null, null).performLongClick();
         int newLength = activity.displayNotes.size();
 
         assertNotEquals(originalLength, newLength);
