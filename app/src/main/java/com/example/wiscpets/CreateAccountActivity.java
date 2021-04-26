@@ -38,7 +38,7 @@ public class CreateAccountActivity extends AppCompatActivity {
                 String address_input = address.getText().toString();
                 String phone_input = phone.getText().toString();
 
-                if (phone_input.length() < 10 || Integer.parseInt(phone_input) < 0) {
+                if (phone_input.length() < 10 || Long.parseLong(phone_input) < 0) {
                     Toast.makeText(getBaseContext(), "Invalid phone number: Please include Area Code", Toast.LENGTH_SHORT).show();
                     return;
                 }
