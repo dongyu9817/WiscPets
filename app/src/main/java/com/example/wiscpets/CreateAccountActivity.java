@@ -38,8 +38,25 @@ public class CreateAccountActivity extends AppCompatActivity {
                 String address_input = address.getText().toString();
                 String phone_input = phone.getText().toString();
 
+                // Check all fields are valid and not empty
                 if (phone_input.length() < 10 || Long.parseLong(phone_input) < 0) {
                     Toast.makeText(getBaseContext(), "Invalid phone number: Please include Area Code", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (username_input.equals("")) {
+                    Toast.makeText(getBaseContext(), "Please Enter Username", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (password_input.equals("")) {
+                    Toast.makeText(getBaseContext(), "Please Enter Password", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (name_input.equals("")) {
+                    Toast.makeText(getBaseContext(), "Please Enter Name", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (address_input.equals("")) {
+                    Toast.makeText(getBaseContext(), "Please Enter Address", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
