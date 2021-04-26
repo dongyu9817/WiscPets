@@ -70,7 +70,7 @@ public class WiscPetLoginActivity extends AppCompatActivity {
 
         //enter is the login button, it will be clicked after user enters username and password
         //enter = findViewById(R.id.imageView7);
-        Button enter = (Button) findViewById(R.id.signup_Button);
+        Button enter = (Button) findViewById(R.id.signin_Button);
 
         PreferenceManager.setDefaultValues(this, R.xml.pref_general, false);
         PreferenceManager.setDefaultValues(this, R.xml.pref_notification, false);
