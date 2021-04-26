@@ -216,7 +216,7 @@ public class DatabaseManager {
         String roleString = "\"role\":\"" + role + "\", ";
         String phoneString = "\"phone\":\"" + phone + "\", ";
         String addressString = "\"address\":\"" + address + "\", ";
-        String nameString = "\"name\":\"" + name + "\", ";
+        String nameString = "\"name\":\"" + name + "\"}";
 
         final boolean[] valid = {false};
         String jsonInputString = operationString + tokenString + emailString + passString + roleString + phoneString + addressString + nameString;
