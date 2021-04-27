@@ -143,10 +143,10 @@
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.64"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/toolbar"
-            app:layout_constraintVertical_bias="0.125"
+            app:layout_constraintVertical_bias="0.27"
             app:srcCompat="@drawable/healthstaff" />
 
         <TextView
@@ -163,7 +163,7 @@
             android:inputType="textMultiLine"
             android:saveEnabled="false"
             android:singleLine="false"
-            android:text="Your Pet's Health\nOur Utmost\nConcern."
+            android:text=""
             android:textColor="@color/black"
             android:textIsSelectable="false"
             android:textSize="20sp"
@@ -202,7 +202,7 @@
             android:gravity="start|top"
             android:inputType="textMultiLine"
             android:singleLine="false"
-            android:text="Whole"
+            android:text=""
             android:textColor="@color/black"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"

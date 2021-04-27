@@ -161,9 +161,9 @@ public class MainActivitySickChecker extends AppCompatActivity {
                       break;
                     case R.id.nav_about:
                         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivitySickChecker.this);
-                        alertDialogBuilder.setMessage("This app provides initial diagnosis about your pets' health." +
-                                " Nurse and veterinarian can use Triage for doctor's visit." +
-                                " Notes taking, weather forecast, clinic search, event management and phone call functions are provided too. ");
+                        alertDialogBuilder.setMessage("This app provides information regarding your pets' health." +
+                                " Veterinarians and pet owners can use the Consultation page for doctor's visit." +
+                                " The notebook features allows users to take notes about their pet ");
                                 alertDialogBuilder.setPositiveButton("OK",
                                         new DialogInterface.OnClickListener() {
                                             @Override

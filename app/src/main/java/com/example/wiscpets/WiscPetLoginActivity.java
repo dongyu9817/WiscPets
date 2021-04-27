@@ -70,7 +70,7 @@ public class WiscPetLoginActivity extends AppCompatActivity {
 
         //enter is the login button, it will be clicked after user enters username and password
         //enter = findViewById(R.id.imageView7);
-        Button enter = (Button) findViewById(R.id.signin_Button);
+        Button enter = (Button) findViewById(R.id.signup_Button);
 
         PreferenceManager.setDefaultValues(this, R.xml.pref_general, false);
         PreferenceManager.setDefaultValues(this, R.xml.pref_notification, false);
@@ -158,9 +158,9 @@ public class WiscPetLoginActivity extends AppCompatActivity {
                     //about
                     case R.id.nav_about:
                         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(WiscPetLoginActivity.this);
-                        alertDialogBuilder.setMessage("This app provides initial diagnosis about your pets' health." +
-                                " Nurse and veterinarian can use Triage for doctor's visit." +
-                                " Notes taking, weather forecast, clinic search, event management and phone call functions are provided too. ");
+                        alertDialogBuilder.setMessage("This app provides information regarding your pets' health." +
+                                " Veterinarians and pet owners can use the Consultation page for doctor's visit." +
+                                " The notebook features allows users to take notes about their pet ");
                         alertDialogBuilder.setPositiveButton("OK",
                                 new DialogInterface.OnClickListener() {
                                     @Override
