@@ -2,6 +2,7 @@
 
 1. Download and open Android Studio: 
    https://developer.android.com/studio/index.html 
+   Follow these steps to install: https://developer.android.com/studio/install
 2. Download a copy of the Git Project. This can be done by downloading a zip file of the git repo and unzipping it on your comptuer locally. 
 3. Build Project by clicking the Build Tab, then clicking "Make Project".
 4. Go to the Run Tab and click "Run app".  
