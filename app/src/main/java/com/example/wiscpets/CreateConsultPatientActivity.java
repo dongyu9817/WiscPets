@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import static android.app.PendingIntent.getActivity;
 
+//This is the activity for vet to review specific patient record
+
 public class CreateConsultPatientActivity extends AppCompatActivity {
 
     private DatabaseManager db = new DatabaseManager();
@@ -21,6 +23,13 @@ public class CreateConsultPatientActivity extends AppCompatActivity {
         Intent intent = getIntent();
         setContentView(R.layout.activity_consultation_patient);
 
+        //get which patient, health record
+        Intent fromHome = getIntent();
+        String patient_number = fromHome.getStringExtra("patient");
+        String health_record_index = fromHome.getStringExtra("healthrecordNumber");
+
+
+        //retrieve patient input
         final EditText pet_name = findViewById(R.id.patient_name);
         final EditText species = findViewById(R.id.species);
         final EditText dob = findViewById(R.id.dob);

@@ -36,7 +36,7 @@ import com.google.android.material.navigation.NavigationView;
 import org.json.JSONObject;
 
 /**
- * login into the Application.
+ * login into the Application. Consutlation
  */
 public class WiscPetLoginActivity extends AppCompatActivity {
     Toolbar t;
@@ -70,7 +70,8 @@ public class WiscPetLoginActivity extends AppCompatActivity {
 
         //enter is the login button, it will be clicked after user enters username and password
         //enter = findViewById(R.id.imageView7);
-        Button enter = (Button) findViewById(R.id.signup_Button);
+        Button enter = (Button) findViewById(R.id.login_Button);
+
 
         PreferenceManager.setDefaultValues(this, R.xml.pref_general, false);
         PreferenceManager.setDefaultValues(this, R.xml.pref_notification, false);
@@ -96,7 +97,13 @@ public class WiscPetLoginActivity extends AppCompatActivity {
                                          String token = db.createToken(username, password);
                                          boolean loginResult = db.validate(token);
 
-                                         if (loginResult) {
+                                         if (username.equals("vet") && loginResult){
+                                             //log in user is vet, go to vet consultation home page.
+                                             Toast.makeText(getBaseContext(), "Welcome Vet, Login Successful!", Toast.LENGTH_SHORT).show();
+                                             Intent gotoConsultation = new Intent(WiscPetLoginActivity.this, MainActivity_consult_vet_home.class);
+                                             startActivity(gotoConsultation);
+                                         }
+                                         else if (loginResult && !username.equals("vet")) {
                                              Toast.makeText(getBaseContext(), "Login Successful!", Toast.LENGTH_SHORT).show();
                                              Intent gotoConsultation = new Intent(WiscPetLoginActivity.this, MainActivityConsultationOwners.class);
                                              startActivity(gotoConsultation);

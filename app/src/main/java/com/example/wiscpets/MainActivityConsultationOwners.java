@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
+//This is the consultation page for pet owners
+
 public class MainActivityConsultationOwners extends AppCompatActivity {
 
     @Override
