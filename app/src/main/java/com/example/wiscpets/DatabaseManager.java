@@ -215,14 +215,7 @@ public class DatabaseManager {
             connection.setRequestProperty("x-api-key", "SeVNjubzye8jacTBCdhH64qg58NG05sQ2Z8GDDgc");
             connection.setDoOutput(true);
 
-            // Output stream for request body
-            /*
-            try (OutputStream os = connection.getOutputStream()) {
-                byte[] input = jsonInput.getBytes("utf-8");
-                os.write(input, 0, input.length);
-            }
 
-             */
 
             try (BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), "utf-8"))) {
                 StringBuilder response = new StringBuilder();
@@ -251,7 +244,7 @@ public class DatabaseManager {
     public JSONObject getPetData(String petId) {
         String requestType = "GET";
         String operation = "getPetInfo";
-        final String urlInput = "https://oc0oygi074.execute-api.us-east-2.amazonaws.com/dev/wiscpets?operation=" + operation + "&petid" + petId;
+        final String urlInput = "https://oc0oygi074.execute-api.us-east-2.amazonaws.com/dev/wiscpets?operation=" + operation + "&petid=" + petId;
         final JSONObject[] result = new JSONObject[1];
 
         // Prevents Main thread use errors
@@ -267,14 +260,7 @@ public class DatabaseManager {
             connection.setRequestProperty("x-api-key", "SeVNjubzye8jacTBCdhH64qg58NG05sQ2Z8GDDgc");
             connection.setDoOutput(true);
 
-            // Output stream for request body
-            /*
-            try (OutputStream os = connection.getOutputStream()) {
-                byte[] input = jsonInput.getBytes("utf-8");
-                os.write(input, 0, input.length);
-            }
 
-             */
 
             try (BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), "utf-8"))) {
                 StringBuilder response = new StringBuilder();
@@ -303,7 +289,44 @@ public class DatabaseManager {
     public JSONObject getVitals(String petId){
         String requestType = "GET";
         String operation = "getPetVitals";
-        return null;
+
+        final String urlInput = "https://oc0oygi074.execute-api.us-east-2.amazonaws.com/dev/wiscpets?operation=" + operation + "&petid=" + petId;
+        final JSONObject[] result = new JSONObject[1];
+
+        // Prevents Main thread use errors
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        try {
+            URL url = new URL(urlInput);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            //type of request
+            connection.setRequestMethod(requestType);
+            connection.setRequestProperty("Content-Type", "application/json; utf-8");
+            // authorize, without this we got 403
+            connection.setRequestProperty("x-api-key", "SeVNjubzye8jacTBCdhH64qg58NG05sQ2Z8GDDgc");
+            connection.setDoOutput(true);
+
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), "utf-8"))) {
+                StringBuilder response = new StringBuilder();
+                String responseLine;
+                while ((responseLine = br.readLine()) != null) {
+                    response.append(responseLine.trim());
+                }
+                result[0] = new JSONObject(response.toString());
+                if (result[0].getString("status").equals("success")) {
+                    Log.i("Request Status", "getPetVitals Success");
+                } else {
+                    Log.i("Request Status", "getPetVitals Failure");
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return result[0];
     }
 
 
