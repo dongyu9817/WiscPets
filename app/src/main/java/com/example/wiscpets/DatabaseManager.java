@@ -182,6 +182,7 @@ public class DatabaseManager {
     }
 
 
+
     public JSONObject getPrescriptions(String ownerid, String petId) {
         String requestType = "GET";
         String operation = "getPrescriptions";
@@ -234,7 +235,7 @@ public class DatabaseManager {
 
     public JSONObject getAllPetNames(String name){
         String requestType = "GET";
-        String operation = "getPetTable";
+        String operation = "getPets";
         final String urlInput = "https://oc0oygi074.execute-api.us-east-2.amazonaws.com/dev/wiscpets?operation=" + operation + "&name=" + name;
         final JSONObject[] result = new JSONObject[1];
 
