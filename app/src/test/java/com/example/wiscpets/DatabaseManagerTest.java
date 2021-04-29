@@ -288,6 +288,38 @@ public class DatabaseManagerTest {
     }
 
     @Test
+    public void getAllPetNamesTestInvalidName(){
+        try {
+            //JSONObject result = db.getPetData(token, petId);
+            JSONObject result = db.getAllPetNames("name doesnt exist");
+            assertEquals("failure", result.getString("status"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+            fail("Exception thrown.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("Exception thrown.");
+        }
+    }
+
+    @Test
+    public void getAllPetNamesTestValidName(){
+        try {
+            //JSONObject result = db.getPetData(token, petId);
+            JSONObject result = db.getAllPetNames("name");
+            assertEquals("success", result.getString("status"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+            fail("Exception thrown.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("Exception thrown.");
+        }
+    }
+
+
+
+    @Test
     public void getWeatherDefaultPassTest() {
         try {
             JSONObject result = db.getWeather();
