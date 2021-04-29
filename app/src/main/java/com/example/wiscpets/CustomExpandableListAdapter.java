@@ -12,6 +12,12 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -23,6 +29,7 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
     private final List<String> expandableListTitle_org;
     private final HashMap<String, List<String>> original_expandableListDetail;
     private HashMap<String, List<String>> expandableListDetail;
+    private DatabaseManager db = new DatabaseManager();
 
     public CustomExpandableListAdapter(Context context, List<String> expandableListTitle,
                                        HashMap<String, List<String>> expandableListDetail) {
@@ -125,14 +132,31 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
         else {
             //do the filter
             Log.i("patient", "enter "+ expandableListTitle_org.size());
-            for(String patient: expandableListTitle_org) {
-                Log.i("patient", "enter loop"+ patient);
-                if (patient.toLowerCase(Locale.getDefault()).contains(query)) {
-                    //add the element to list
-                    Log.i("patient", patient + query);
-                    expandableListTitle.add(patient);
-                    expandableListDetail.put(patient, original_expandableListDetail.get(patient));
+            JSONObject response = db.getAllPetNames(query);
+            try {
+                if (response == null) {
+                    expandableListTitle.add("No pets");
+                    expandableListDetail.put("No pets", new ArrayList<>());
+                } else {
+                    JSONArray pets = response.getJSONArray("response");
+                    for (int i = 0; i < pets.length(); i++) {
+                        String name = pets.getJSONObject(i).getString("name");
+                        expandableListTitle.add(name);
+
+                        ArrayList<String> petVitalInfo = new ArrayList<>();
+                        int petid = pets.getJSONObject(i).getInt("petid");
+                        JSONObject vitals = db.getVitals(String.valueOf(petid));
+                        JSONArray vitalsList = vitals.getJSONArray("response");
+                        for (int j = 0; j < vitalsList.length(); j++) {
+                            JSONObject visit = vitalsList.getJSONObject(j);
+                            petVitalInfo.add(visit.getString("Visit_Date"));
+                        }
+
+                        expandableListDetail.put(name, petVitalInfo);
+                    }
                 }
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
                 if(expandableListDetail.size() <= 0){
                     new AlertDialog.Builder(context)
