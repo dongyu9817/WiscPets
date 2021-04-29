@@ -230,11 +230,12 @@ public class DatabaseManagerTest {
 
     @Test
     public void getPetDataPassTest() {
-        String token = "dGhvbWFzQGhvdG1haWwuY29tOmd1ZXNzYWJsZVBhc3N3b3JkMTIz";
+        //String token = "dGhvbWFzQGhvdG1haWwuY29tOmd1ZXNzYWJsZVBhc3N3b3JkMTIz";
         String petId = "14";
 
         try {
-            JSONObject result = db.getPetData(token, petId);
+            //JSONObject result = db.getPetData(token, petId);
+            JSONObject result = db.getPetData(petId);
 
             assertEquals("success", result.getString("status"));
         } catch (JSONException e) {
@@ -246,6 +247,7 @@ public class DatabaseManagerTest {
         }
     }
 
+    /*
     @Test
     public void getPetDataBadTokenFailTest() {
         String token = "tokenisbad";
@@ -264,13 +266,16 @@ public class DatabaseManagerTest {
         }
     }
 
+     */
+
     @Test
     public void getPetDataBadPetIdFailTest() {
-        String token = "dGhvbWFzQGhvdG1haWwuY29tOmd1ZXNzYWJsZVBhc3N3b3JkMTIz";
+        //String token = "dGhvbWFzQGhvdG1haWwuY29tOmd1ZXNzYWJsZVBhc3N3b3JkMTIz";
         String petId = "-3";
 
         try {
-            JSONObject result = db.getPetData(token, petId);
+            //JSONObject result = db.getPetData(token, petId);
+            JSONObject result = db.getPetData(petId);
 
             assertEquals("failure", result.getString("status"));
         } catch (JSONException e) {
