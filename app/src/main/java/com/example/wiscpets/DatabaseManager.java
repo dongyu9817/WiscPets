@@ -182,10 +182,46 @@ public class DatabaseManager {
     }
 
 
-    public JSONObject getPrescriptions(String token, String petId) {
+    public JSONObject getPrescriptions(String ownerid, String petId) {
         String requestType = "GET";
         String operation = "getPrescriptions";
-        return null;
+        final String urlInput = "https://oc0oygi074.execute-api.us-east-2.amazonaws.com/dev/wiscpets?operation=" + operation + "&petid=" + petId + "&ownerid="+ ownerid;
+        final JSONObject[] result = new JSONObject[1];
+
+        // Prevents Main thread use errors
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        try {
+            URL url = new URL(urlInput);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            //type of request
+            connection.setRequestMethod(requestType);
+            connection.setRequestProperty("Content-Type", "application/json; utf-8");
+            // authorize, without this we got 403
+            connection.setRequestProperty("x-api-key", "SeVNjubzye8jacTBCdhH64qg58NG05sQ2Z8GDDgc");
+            connection.setDoOutput(true);
+
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), "utf-8"))) {
+                StringBuilder response = new StringBuilder();
+                String responseLine;
+                while ((responseLine = br.readLine()) != null) {
+                    response.append(responseLine.trim());
+                }
+                result[0] = new JSONObject(response.toString());
+                if (result[0].getString("status").equals("success")) {
+                    Log.i("Request Status", "getPrescriptions Success");
+                } else {
+                    Log.i("Request Status", "getPrescriptions Failure");
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return result[0];
     }
 
 
@@ -194,6 +230,50 @@ public class DatabaseManager {
         String operation = "getAppointments";
         return null;
     }
+
+
+    public JSONObject getAllPetNames(String name){
+        String requestType = "GET";
+        String operation = "getPetTable";
+        final String urlInput = "https://oc0oygi074.execute-api.us-east-2.amazonaws.com/dev/wiscpets?operation=" + operation + "&name=" + name;
+        final JSONObject[] result = new JSONObject[1];
+
+        // Prevents Main thread use errors
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        try {
+            URL url = new URL(urlInput);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            //type of request
+            connection.setRequestMethod(requestType);
+            connection.setRequestProperty("Content-Type", "application/json; utf-8");
+            // authorize, without this we got 403
+            connection.setRequestProperty("x-api-key", "SeVNjubzye8jacTBCdhH64qg58NG05sQ2Z8GDDgc");
+            connection.setDoOutput(true);
+
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), "utf-8"))) {
+                StringBuilder response = new StringBuilder();
+                String responseLine;
+                while ((responseLine = br.readLine()) != null) {
+                    response.append(responseLine.trim());
+                }
+                result[0] = new JSONObject(response.toString());
+                if (result[0].getString("status").equals("success")) {
+                    Log.i("Request Status", "getAllPetNames Success");
+                } else {
+                    Log.i("Request Status", "getAllPetNames Failure");
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return result[0];
+    }
+
 
 
     public JSONObject getPetTable() {
@@ -214,8 +294,6 @@ public class DatabaseManager {
             // authorize, without this we got 403
             connection.setRequestProperty("x-api-key", "SeVNjubzye8jacTBCdhH64qg58NG05sQ2Z8GDDgc");
             connection.setDoOutput(true);
-
-
 
             try (BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), "utf-8"))) {
                 StringBuilder response = new StringBuilder();
@@ -387,9 +465,60 @@ public class DatabaseManager {
         return valid[0];
     }
 
+
     public boolean addPrescription(String ownerId, String petId, String prescriptionName, String dosage, String startDate, String endDate){
         String requestType = "POST";
         String operation = "addPrescription";
+        String opStr = "{\"operation\":\"" + operation + "\", ";
+        String ownerStr = "\"ownerid\":\"" + ownerId + "\", ";
+        String petStr = "\"petid\":\"" + petId + "\", ";
+        String vetStr = "\"prescription_name\":\"" + prescriptionName + "\", ";
+        String dateStr = "\"dosage\":\"" + dosage + "\", ";
+        String reasonStr = "\"dt_start\":\"" + startDate + "\", ";
+        String timeStr = "\"dt_end\":\"" + endDate + "\"}";
+        String jsonInput = opStr + ownerStr + petStr + vetStr + dateStr + reasonStr + timeStr;
+        final String urlInput = "https://oc0oygi074.execute-api.us-east-2.amazonaws.com/dev/wiscpets";
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        try {
+            URL url = new URL(urlInput);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            // type of request
+            connection.setRequestMethod(requestType);
+            connection.setRequestProperty("Content-Type", "application/json; utf-8");
+            // authorize, without this we got 403
+            connection.setRequestProperty("x-api-key", "SeVNjubzye8jacTBCdhH64qg58NG05sQ2Z8GDDgc");
+            connection.setDoOutput(true);
+
+            try (OutputStream os = connection.getOutputStream()) {
+                byte[] input = jsonInput.getBytes("utf-8");
+                os.write(input, 0, input.length);
+            }
+
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), "utf-8"))) {
+                StringBuilder response = new StringBuilder();
+                String responseLine = null;
+                while ((responseLine = br.readLine()) != null) {
+                    response.append(responseLine.trim());
+                }
+                System.out.println(response.toString());
+                JSONObject result = new JSONObject(response.toString());
+                if (result.getString("status").compareTo("success") == 0) {
+                    Log.i("Request Status", "addPrescription Success");
+                    return true;
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } catch (ProtocolException e) {
+            e.printStackTrace();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Log.i("Request Status", "addPrescription Failure");
         return false;
     }
 
@@ -509,11 +638,13 @@ public class DatabaseManager {
     }
 
 
+
     public boolean modifyPrescription(String token, String petId, String prescription, String dosage) {
         String requestType = "PUT";
         String operation = "modifyPrescription";
         return false;
     }
+
 
 
     public boolean modifyAppointment(String token, String oldDate, String newDate) {
@@ -528,6 +659,7 @@ public class DatabaseManager {
         String operation = "modifyPet";
         return false;
     }
+
 
 
     public boolean deletePet(String petId) {
