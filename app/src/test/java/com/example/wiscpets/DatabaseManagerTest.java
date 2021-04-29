@@ -317,6 +317,38 @@ public class DatabaseManagerTest {
         }
     }
 
+    @Test
+    public void getVitalsValidTest(){
+        try {
+            //JSONObject result = db.getPetData(token, petId);
+            JSONObject result = db.getVitals("14");
+            assertEquals("success", result.getString("status"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+            fail("Exception thrown.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("Exception thrown.");
+        }
+
+    }
+
+
+    @Test
+    public void getVitalsInvalidTest(){
+        try {
+            //JSONObject result = db.getPetData(token, petId);
+            JSONObject result = db.getVitals("17");
+            assertEquals("failure", result.getString("status"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+            fail("Exception thrown.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("Exception thrown.");
+        }
+    }
+
 
 
     @Test
