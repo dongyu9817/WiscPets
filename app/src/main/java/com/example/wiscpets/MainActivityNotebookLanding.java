@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -20,8 +21,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+
+import com.example.wiscpets.app.app_activity_contact_us;
+import com.example.wiscpets.app.app_event_add_to_calendar;
+import com.example.wiscpets.app.app_make_phone_call_activity;
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -33,6 +43,9 @@ public class MainActivityNotebookLanding extends AppCompatActivity implements Se
     SearchView editsearch;
     ArrayAdapter adapter;
     ArrayList<String> displayNotes;
+    Toolbar t;
+    DrawerLayout drawer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -126,6 +139,95 @@ public class MainActivityNotebookLanding extends AppCompatActivity implements Se
         //search
         editsearch = (SearchView) findViewById(R.id.searchBar);
         editsearch.setOnQueryTextListener((SearchView.OnQueryTextListener) this);
+
+        drawer = findViewById(R.id.draw_activity);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, t, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+        NavigationView nav = findViewById(R.id.nav_view);
+        nav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    //sickness checker
+                    case R.id.nav_check:
+                        Intent c_check = new Intent(MainActivityNotebookLanding.this, MainActivitySickChecker.class);
+                        startActivity(c_check);
+                        break;
+
+                    //consultant
+                    case R.id.nav_check_triage:
+                        Intent c_check_triage = new Intent(MainActivityNotebookLanding.this, WiscPetLoginActivity.class);
+                        startActivity(c_check_triage);
+                        break;
+
+                    //search for nearby hospital
+                    case R.id.nav_hosp:   // search for nearby hospital
+                        Intent browserIntent = new Intent(Intent.ACTION_VIEW);
+                        browserIntent.setData(Uri.parse("https://www.google.com/maps/search/animal+hospital/@43.0665967,-89.4442024,12z/data=!4m8!2m7!3m6!1sanimal+hospital!2sUniversity+of+Wisconsin+School+of+Medicine+and+Public+Health,+750+Highland+Ave,+Madison,+WI+53726!3s0x8807aced2e217f59:0x40c12eea006ffa4a!4m2!1d-89.430191!2d43.0775032"));
+                        startActivity(browserIntent);
+                        break;
+
+                    //emergency call
+                    case R.id.nav_sos:
+                        Intent in = new Intent(MainActivityNotebookLanding.this, app_make_phone_call_activity.class);
+                        startActivity(in);
+                        break;
+                    //today's weather
+                    case R.id.nav_weather:
+                        Intent browserIntentW = new Intent(Intent.ACTION_VIEW);
+                        browserIntentW.setData(Uri.parse("https://weather.com/weather/hourbyhour/l/53726:4:US"));
+                        startActivity(browserIntentW);
+                        break;
+
+                    //add to calender
+                    case R.id.nav_events:
+                        Intent inE = new Intent(MainActivityNotebookLanding.this, app_event_add_to_calendar.class);
+                        startActivity(inE);
+                        break;
+
+                    //add to notes
+                    case R.id.nav_note:
+                        Intent c_note = new Intent(MainActivityNotebookLanding.this, MainActivityNotebookLanding.class);
+                        startActivity(c_note);
+                        break;
+
+                    //about
+                    case R.id.nav_about:
+                        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivityNotebookLanding.this);
+                        alertDialogBuilder.setMessage("This app provides information regarding your pets' health." +
+                                " Veterinarians and pet owners can use the Consultation page for doctor's visit." +
+                                " The notebook features allows users to take notes about their pet ");
+                        alertDialogBuilder.setPositiveButton("OK",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface arg0, int arg1) {
+                                        //  Toast.makeText(MainActivity.this,"You clicked yes    button",Toast.LENGTH_LONG).show();
+                                    }
+                                });
+                        AlertDialog alertDialog = alertDialogBuilder.create();
+                        alertDialog.show();
+                        break;
+
+                    //Under connection-share
+                    case R.id.nav_share:
+                        Intent myIntent = new Intent(Intent.ACTION_SEND);
+                        myIntent.setType("text/plain");
+                        startActivity(Intent.createChooser(myIntent, "SHARE USING"));
+                        break;
+                    //Under connection-contact us
+                    case R.id.nav_cntus:
+                        Intent c_us = new Intent(MainActivityNotebookLanding.this, app_activity_contact_us.class);
+                        startActivity(c_us);
+                        break;
+
+
+                }
+                drawer.closeDrawer(GravityCompat.START);
+                return true;
+            }
+        });
     }
 
     @Override

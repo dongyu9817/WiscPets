@@ -143,16 +143,12 @@ public class MainActivitySickChecker extends AppCompatActivity {
                         Intent c_us = new Intent(MainActivitySickChecker.this, app_activity_contact_us.class);
                         startActivity(c_us);
                         break;
-                        /*
 
-
+                    //consultant
                     case R.id.nav_check_triage:
-                       // Intent c_check_triage = new Intent(MainActivity.this, ERMainLoginActivity.class);
-                        Intent c_check_triage = new Intent(MainActivitySickChecker.this, ClinicMainLoginActivity.class);
-
-                        startActivity( c_check_triage);
+                        Intent c_check_triage = new Intent(MainActivitySickChecker.this, WiscPetLoginActivity.class);
+                        startActivity(c_check_triage);
                         break;
-                        */
 
                     case R.id.nav_weather:
                         Intent browserIntentW = new Intent(Intent.ACTION_VIEW);

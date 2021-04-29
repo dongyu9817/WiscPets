@@ -1,20 +1,27 @@
 package com.example.wiscpets;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
+
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
 
     private Context context;
     private List<String> expandableListTitle;
+    private final List<String> expandableListTitle_org;
+    private final HashMap<String, List<String>> original_expandableListDetail;
     private HashMap<String, List<String>> expandableListDetail;
 
     public CustomExpandableListAdapter(Context context, List<String> expandableListTitle,
@@ -22,6 +29,8 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
         this.context = context;
         this.expandableListTitle = expandableListTitle;
         this.expandableListDetail = expandableListDetail;
+        this.original_expandableListDetail = expandableListDetail;
+        this.expandableListTitle_org = expandableListTitle;
     }
 
     @Override
@@ -95,5 +104,54 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
     @Override
     public boolean isChildSelectable(int listPosition, int expandedListPosition) {
         return true;
+    }
+
+    public void restoreData(){
+        expandableListTitle= expandableListTitle_org;
+        expandableListDetail = original_expandableListDetail;
+
+    }
+
+    public void filterData(String query){
+
+        query = query.toLowerCase();
+        expandableListDetail.clear();
+        expandableListTitle.clear();
+
+        if(query.isEmpty()){
+            expandableListTitle= expandableListTitle_org;
+            expandableListDetail = original_expandableListDetail;
+        }
+        else {
+            //do the filter
+            Log.i("patient", "enter "+ expandableListTitle_org.size());
+            for(String patient: expandableListTitle_org) {
+                Log.i("patient", "enter loop"+ patient);
+                if (patient.toLowerCase(Locale.getDefault()).contains(query)) {
+                    //add the element to list
+                    Log.i("patient", patient + query);
+                    expandableListTitle.add(patient);
+                    expandableListDetail.put(patient, original_expandableListDetail.get(patient));
+                }
+            }
+                if(expandableListDetail.size() <= 0){
+                    new AlertDialog.Builder(context)
+                            .setTitle("Alert Message")
+                            .setMessage("No Result found, please try again")
+
+                            // Specifying a listener allows you to take an action before dismissing the dialog.
+                            // The dialog is automatically dismissed when a dialog button is clicked.
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // Continue with delete operation
+                                }
+                            })
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
+
+            }
+        }
+        notifyDataSetChanged();
+
     }
 }
