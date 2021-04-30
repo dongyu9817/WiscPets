@@ -467,7 +467,7 @@ def lambda_handler(event, context):
         city = params.get('city') or "madison"
         state = params.get('state') or "wi"
         country = params.get('country') or "us"
-        res = requests.get("https://api.openweathermap.org/data/2.5/weather?q={},{},{}&appid=1bc7c6bc752c9d9de5d9c10ee6eceeed&units=imperial".format(city, country, state))
+        res = requests.get("https://api.openweathermap.org/data/2.5/weather?q=%7B%7D,%7B%7D,%7B%7D&appid=***&units=imperial%22.format(city, country, state))
         weather = json.loads(res.content)['weather'][0]
         temp = json.loads(res.content)['main']['temp']
         desc = weather['main']
