@@ -44,7 +44,7 @@ public class DatabaseManagerTest {
     @Test
     public void validateTest(){
         //DatabaseManager db = new DatabaseManager();
-        String token = db.createToken("thomas@hotmail.com", "guessablePassword123");
+        String token = db.createToken("jake@email", "1234");
         boolean result = db.validate(token);
         assertTrue(result);
     }
@@ -59,8 +59,8 @@ public class DatabaseManagerTest {
 
     @Test
     public void userIdGetPassTest() {
-        String ownerid = db.getUserId("thomas@hotmail.com", "guessablePassword123");
-        assertEquals("1", ownerid);
+        String ownerid = db.getUserId("jake@email", "1234");
+        assertEquals("3", ownerid);
     }
 
     @Test
@@ -69,6 +69,9 @@ public class DatabaseManagerTest {
         assertEquals("-1", ownerid);
     }
 
+    /*
+    //////// SICKNESSES ARE NOW HANDLED IN APP /////////
+    ///////////////////////////////////////////////////
     @Test
     public void getSicknessesPassTest() {
         String[] syms = new String[1];
@@ -127,6 +130,8 @@ public class DatabaseManagerTest {
         }
     }
 
+     */
+
     @Test
     public void getPrescriptionsPassTest() {
         String token = "dGhvbWFzQGhvdG1haWwuY29tOmd1ZXNzYWJsZVBhc3N3b3JkMTIz";
@@ -178,6 +183,9 @@ public class DatabaseManagerTest {
         }
     }
 
+    /*
+    /////////// UNIMPLEMENTED IN APP ///////////
+    ////////////////////////////////////////////
     @Test
     public void getApptsPassTest() {
         String token = "dGhvbWFzQGhvdG1haWwuY29tOmd1ZXNzYWJsZVBhc3N3b3JkMTIz";
@@ -211,6 +219,8 @@ public class DatabaseManagerTest {
             fail("Exception thrown.");
         }
     }
+
+     */
 
     @Test
     public void getPetTableTest() {
@@ -400,7 +410,7 @@ public class DatabaseManagerTest {
     @Test
     public void addPrescriptionPassTest() {
         try {
-            boolean result = db.addPrescription("1", "14", "Test", "Test", "Jan 1", "Dec 31");
+            boolean result = db.addPrescription("3", "22", "Test", "Test", "Jan 1", "Dec 31");
 
             assertTrue(result);
         } catch (Exception e) {
@@ -522,6 +532,7 @@ public class DatabaseManagerTest {
         }
     }
 
+    /*
     @Test
     public void modifyApptPassTest() {
         String token = "dGhvbWFzQGhvdG1haWwuY29tOmd1ZXNzYWJsZVBhc3N3b3JkMTIz";
@@ -690,6 +701,7 @@ public class DatabaseManagerTest {
 
         fail("AS OF RIGHT NOW, IT IS UNSAFE TO DELETE ENTRIES IN DB");
     }
+     */
 
     @Test
     public void deletePetBadPetIdFailTest() {
@@ -760,11 +772,13 @@ public class DatabaseManagerTest {
         }
     }
 
+    /*
     @Test
     public void deleteAccountPassTest() {
         //TODO
         fail("AS OF RIGHT NOW, IT IS UNSAFE TO DELETE ENTRIES IN DB");
     }
+     */
 
     @Test
     public void deleteAccountBadTokenFailTest() {
@@ -779,11 +793,13 @@ public class DatabaseManagerTest {
         }
     }
 
+    /*
     @Test
     public void deleteApptPassTest() {
         //TODO
         fail("AS OF RIGHT NOW, IT IS UNSAFE TO DELETE ENTRIES IN DB");
     }
+     */
 
     @Test
     public void deleteApptBadTokenFailTest() {

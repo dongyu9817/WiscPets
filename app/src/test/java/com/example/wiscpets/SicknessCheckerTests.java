@@ -51,7 +51,7 @@ public class SicknessCheckerTests {
 
     @Test
     public void emptyFieldsTest() {
-        ImageView enter = activity.findViewById(R.id.imageView7);
+        Button enter = activity.findViewById(R.id.enter_Button);
         enter.performClick();
 
         Intent actual = Shadows.shadowOf(activity).getNextStartedActivity();
@@ -67,7 +67,7 @@ public class SicknessCheckerTests {
 
         age.setText("12");
         dogType.toggle();
-        ImageView enter = activity.findViewById(R.id.imageView7);
+        Button enter = activity.findViewById(R.id.enter_Button);
         enter.performClick();
 
         String message = ShadowToast.getTextOfLatestToast();
@@ -83,7 +83,7 @@ public class SicknessCheckerTests {
 
         name.setText("Spot");
         dogType.toggle();
-        ImageView enter = activity.findViewById(R.id.imageView7);
+        Button enter = activity.findViewById(R.id.enter_Button);
         enter.performClick();
 
         String message = ShadowToast.getTextOfLatestToast();
@@ -98,7 +98,7 @@ public class SicknessCheckerTests {
 
         name.setText("Spot");
         age.setText("12");
-        ImageView enter = activity.findViewById(R.id.imageView7);
+        Button enter = activity.findViewById(R.id.enter_Button);
         enter.performClick();
 
         String message = ShadowToast.getTextOfLatestToast();
@@ -115,7 +115,7 @@ public class SicknessCheckerTests {
         name.setText("Spot");
         age.setText("12");
         dogType.toggle();
-        ImageView enter = activity.findViewById(R.id.imageView7);
+        Button enter = activity.findViewById(R.id.enter_Button);
         enter.performClick();
 
         Intent expected = new Intent(activity, activity_symptoms.class);
@@ -133,7 +133,7 @@ public class SicknessCheckerTests {
         name.setText("Spot");
         age.setText("12");
         catType.toggle();
-        ImageView enter = activity.findViewById(R.id.imageView7);
+        Button enter = activity.findViewById(R.id.enter_Button);
         enter.performClick();
 
         Intent expected = new Intent(activity, activity_symptoms.class);

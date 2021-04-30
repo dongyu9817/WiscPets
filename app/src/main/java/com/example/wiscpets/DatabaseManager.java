@@ -536,6 +536,11 @@ public class DatabaseManager {
         String timeStr = "\"time\":\"" + time + "\"}";
         String jsonInput = opStr + ownerStr + petStr + vetStr + dateStr + reasonStr + timeStr;
 
+        if (Integer.parseInt(vetId) < 0 || Integer.parseInt(petId) < 0 || Integer.parseInt(ownerId) < 0) {
+            Log.i("addAppointment", "given Id is negative");
+            return false;
+        }
+
         final String urlInput = "https://oc0oygi074.execute-api.us-east-2.amazonaws.com/dev/wiscpets";
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();

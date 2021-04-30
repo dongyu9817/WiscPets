@@ -49,10 +49,10 @@ public class LoginTest {
     public void loginSuccessTest() {
         EditText user = activity.findViewById(R.id.username_field);
         EditText pass = activity.findViewById(R.id.password_field);
-        ImageView loginButton = activity.findViewById(R.id.imageView7);
+        Button loginButton = activity.findViewById(R.id.login_Button);
 
-        user.setText("thomas@hotmail.com");
-        pass.setText("guessablePassword123");
+        user.setText("jake@email");
+        pass.setText("1234");
 
         loginButton.performClick();
         Intent expected = new Intent(activity, MainActivityConsultationOwners.class);
@@ -65,7 +65,7 @@ public class LoginTest {
     public void loginFailedTest() {
         EditText user = activity.findViewById(R.id.username_field);
         EditText pass = activity.findViewById(R.id.password_field);
-        ImageView loginButton = activity.findViewById(R.id.imageView7);
+        Button loginButton = activity.findViewById(R.id.login_Button);
 
         user.setText("not a real username");
         pass.setText("not a real password");
@@ -291,6 +291,7 @@ public class LoginTest {
         assertEquals(expected.getComponent().getClassName(), actual.getComponent().getClassName());
     }
 
+    /*
     @Test
     public void menuInflationTest() {
         ShadowActivity shadowActivity = Shadows.shadowOf(activity);
@@ -317,4 +318,5 @@ public class LoginTest {
 
         assertEquals(expected.getComponent().getClassName(), actual.getComponent().getClassName());
     }
+     */
 }
