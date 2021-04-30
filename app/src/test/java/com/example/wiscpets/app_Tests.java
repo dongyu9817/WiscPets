@@ -167,15 +167,6 @@ public class app_Tests {
         assertNotNull(home);
     }
 
-    @Test
-    public void waitAndGoTest() {
-        Intent expected = new Intent(home, WiscPetLoginActivity.class);
-
-        home = Robolectric.buildActivity(app_home.class).create().resume().get();
-        SystemClock.sleep(3000);
-        Intent actual = Shadows.shadowOf(home).getNextStartedActivity();
-    }
-
     /////////////////////
     // MAKE PHONE CALL //
     /////////////////////
