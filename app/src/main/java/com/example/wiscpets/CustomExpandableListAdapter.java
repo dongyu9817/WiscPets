@@ -68,8 +68,7 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int listPosition) {
-        return this.expandableListDetail.get(this.expandableListTitle.get(listPosition))
-                .size();
+        return this.expandableListDetail.get(this.expandableListTitle.get(listPosition)).size();
     }
 
     @Override
@@ -141,10 +140,10 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
                     JSONArray pets = response.getJSONArray("response");
                     for (int i = 0; i < pets.length(); i++) {
                         String name = pets.getJSONObject(i).getString("name");
-                        expandableListTitle.add(name);
+                        int petid = pets.getJSONObject(i).getInt("petid");
+                        expandableListTitle.add(petid + " " + name);
 
                         ArrayList<String> petVitalInfo = new ArrayList<>();
-                        int petid = pets.getJSONObject(i).getInt("petid");
                         JSONObject vitals = db.getVitals(String.valueOf(petid));
                         JSONArray vitalsList = vitals.getJSONArray("response");
                         for (int j = 0; j < vitalsList.length(); j++) {
@@ -152,7 +151,7 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
                             petVitalInfo.add(visit.getString("Visit_Date"));
                         }
 
-                        expandableListDetail.put(name, petVitalInfo);
+                        expandableListDetail.put(petid + " " + name, petVitalInfo);
                     }
                 }
             } catch (JSONException e) {

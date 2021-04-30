@@ -95,8 +95,8 @@ public class MainActivity_consult_vet_home extends AppCompatActivity implements
                                 childPosition), Toast.LENGTH_SHORT
                 ).show();
                 Intent gotoConsultation = new Intent(MainActivity_consult_vet_home.this, CreateConsultPatientActivity.class);
-                gotoConsultation.putExtra("patient", expandableListTitle.get(groupPosition));
-                gotoConsultation.putExtra("healthrecordNumber", expandableListDetail.get(
+                gotoConsultation.putExtra("petName", expandableListTitle.get(groupPosition));
+                gotoConsultation.putExtra("visitVitals", expandableListDetail.get(
                         expandableListTitle.get(groupPosition)).get(
                         childPosition));
                 startActivity(gotoConsultation);
